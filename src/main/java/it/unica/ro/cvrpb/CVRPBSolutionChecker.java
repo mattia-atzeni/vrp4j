@@ -5,7 +5,6 @@ import it.unica.ro.cvrpb.model.Customer;
 import it.unica.ro.cvrpb.model.Route;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CVRPBSolutionChecker {
@@ -15,14 +14,14 @@ public class CVRPBSolutionChecker {
         this.instance = instance;
     }
 
-    public boolean check(Set<Route> routes) {
+    public boolean check(CVRPBSolution routes) {
         return checkAllCustomersVisited(routes) &&
                 checkCapacity(routes) &&
                 checkCustomerPath(routes) &&
                 checkNumberOfVehicles(routes);
     }
 
-    private boolean checkAllCustomersVisited(Set<Route> routes) {
+    private boolean checkAllCustomersVisited(CVRPBSolution routes) {
         List<Customer> customers = instance.getCustomers();
         List<Customer> visitedCustomers = routes.stream()
                 .flatMap(r -> r.getCustomers().stream())
@@ -32,7 +31,7 @@ public class CVRPBSolutionChecker {
                visitedCustomers.containsAll(customers);
     }
 
-    private boolean checkCapacity(Set<Route> routes) {
+    private boolean checkCapacity(CVRPBSolution routes) {
         return routes.stream().allMatch(this::checkCapacity);
     }
 
@@ -51,11 +50,11 @@ public class CVRPBSolutionChecker {
         return route.getLinehaulCustomers().size() > 0;
     }
 
-    private boolean checkCustomerPath(Set<Route> routes) {
+    private boolean checkCustomerPath(CVRPBSolution routes) {
         return routes.stream().allMatch(this::checkCustomerPath);
     }
 
-    private boolean checkNumberOfVehicles(Set<Route> routes) {
+    private boolean checkNumberOfVehicles(CVRPBSolution routes) {
         return instance.getNumberofVehicles() == routes.size();
     }
 }
