@@ -3,15 +3,10 @@ package it.unica.ro.cvrpb.model;
 public class Vertex {
     private final double x;
     private final double y;
-    private final String label;
-
-    private static int counter = 0;
 
     public Vertex(double x, double y) {
         this.x = x;
         this.y = y;
-        label = String.valueOf(counter);
-        counter++;
     }
 
     public double getX() {
@@ -20,14 +15,6 @@ public class Vertex {
 
     public double getY() {
         return y;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public static void resetCounter() {
-        counter = 0;
     }
 
     @Override
@@ -53,6 +40,6 @@ public class Vertex {
 
     @Override
     public String toString() {
-        return getLabel() + "\t(" + getX() + ", " + getY() + ")";
+        return "(" + getX() + ", " + getY() + ")";
     }
 }

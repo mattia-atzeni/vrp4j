@@ -96,7 +96,7 @@ public class Route {
     @Override
     public String toString() {
         return "0 " + getCustomers().stream()
-                .map(Customer::getLabel)
+                .map(c -> String.valueOf(c.getLabel()))
                 .collect(Collectors.joining(" ")) + " 0";
     }
 

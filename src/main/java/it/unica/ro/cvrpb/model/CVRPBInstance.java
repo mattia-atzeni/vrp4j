@@ -8,7 +8,7 @@ public class CVRPBInstance {
     private final int numberOfCustomers;
     private final int numberofVehicles;
     private final int capacity;
-    private final Vertex depot;
+    private final Depot depot;
     private final List<BackhaulCustomer> backhaulCustomers;
     private final List<LinehaulCustomer> linehaulCustomers;
 
@@ -33,16 +33,24 @@ public class CVRPBInstance {
         return capacity;
     }
 
-    public Vertex getDepot() {
+    public Depot getDepot() {
         return depot;
     }
 
+    public List<Node> getNodes() {
+        List<Node> nodes = new ArrayList<>(numberOfCustomers + 1);
+        nodes.add(depot);
+        nodes.addAll(backhaulCustomers);
+        nodes.addAll(linehaulCustomers);
+        return nodes;
+    }
+
     public List<BackhaulCustomer> getBackhaulCustomers() {
-        return backhaulCustomers;
+        return new ArrayList<>(backhaulCustomers);
     }
 
     public List<LinehaulCustomer> getLinehaulCustomers() {
-        return linehaulCustomers;
+        return new ArrayList<>(linehaulCustomers);
     }
 
     public List<Customer> getCustomers() {
@@ -75,12 +83,12 @@ public class CVRPBInstance {
         private int numberOfCustomers;
         private int numberofVehicles;
         private int capacity;
-        private Vertex depot;
+        private Depot depot;
         private List<BackhaulCustomer> backhaulCustomers;
         private List<LinehaulCustomer> linehaulCustomers;
 
         public CVRPBInstance build() {
-            Vertex.resetCounter();
+            Node.resetCounter();
             CVRPBInstance i = new CVRPBInstance(this);
             if (i.numberOfCustomers <= 0 || i.numberofVehicles <= 0 ||
                     i.capacity <= 0 || i.depot == null ||
@@ -105,7 +113,7 @@ public class CVRPBInstance {
             return this;
         }
 
-        public CVRPBInstanceBuilder setDepot(Vertex depot) {
+        public CVRPBInstanceBuilder setDepot(Depot depot) {
             this.depot = depot;
             return this;
         }

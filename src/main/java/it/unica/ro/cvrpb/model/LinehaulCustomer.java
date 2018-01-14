@@ -10,10 +10,12 @@ public class LinehaulCustomer extends Customer {
         return getLoad();
     }
 
+    @Override
     public boolean isLinehaul() {
         return true;
     }
 
+    @Override
     public boolean isBackhaul() {
         return false;
     }
