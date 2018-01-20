@@ -1,4 +1,4 @@
-package it.unica.ro.cvrpb;
+package it.unica.ro.cvrpb.solver.solution;
 
 import it.unica.ro.cvrpb.model.CVRPBInstance;
 import it.unica.ro.cvrpb.model.Customer;
@@ -55,6 +55,6 @@ public class CVRPBSolutionChecker {
     }
 
     private boolean checkNumberOfVehicles(CVRPBSolution routes) {
-        return instance.getNumberofVehicles() == routes.size();
+        return instance.getNumberOfVehicles() == routes.size();
     }
 }
