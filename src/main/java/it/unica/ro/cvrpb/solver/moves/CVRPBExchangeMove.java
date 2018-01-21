@@ -50,6 +50,11 @@ public class CVRPBExchangeMove implements CVRPBMove {
                 costs.get(prevSecond, firstCustomer) +
                 costs.get(firstCustomer, nextSecond);
 
+        if (firstRoute.equals(secondRoute) && Math.abs(secondIndex - firstIndex) == 1) {
+            localPreCondition -= costs.get(firstCustomer, nextFirst) +
+                    costs.get(prevSecond, secondCustomer);
+        }
+
         return localPreCondition - localPostCondition;
     }
 
@@ -98,5 +103,12 @@ public class CVRPBExchangeMove implements CVRPBMove {
     @Override
     public int compareTo(CVRPBMove o) {
         return (int) Math.ceil(this.evalAdvantage() - o.evalAdvantage());
+    }
+
+    @Override
+    public String toString() {
+        return "Route1: " + firstRoute + "\n" +
+                "Route2: " + secondRoute + "\n" +
+                "Route1 - " + firstIndex + " <--> Route2 - " + secondIndex;
     }
 }

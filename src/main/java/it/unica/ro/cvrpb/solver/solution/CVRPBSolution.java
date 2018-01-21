@@ -39,4 +39,8 @@ public class CVRPBSolution implements Iterable<Route> {
     public List<Route> getRoutes() {
         return routes;
     }
+
+    public double getTotalCost() {
+        return stream().mapToDouble(Route::getCost).sum();
+    }
 }

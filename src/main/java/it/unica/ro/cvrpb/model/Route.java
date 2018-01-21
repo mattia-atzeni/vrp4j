@@ -142,6 +142,17 @@ public class Route implements Iterable<Node> {
         return actualDeliveryLoad == deliveryLoad && actualPickupLoad == pickupLoad;
     }
 
+    public double getCost() {
+        int size = size();
+        double cost = 0;
+        for (int i = 0; i < size - 1; i++) {
+            Node current = get(i);
+            Node next = get(i + 1);
+            cost += instance.getCosts().get(current, next);
+        }
+        return cost;
+    }
+
     public int getDeliveryLoad() {
         return deliveryLoad;
     }
