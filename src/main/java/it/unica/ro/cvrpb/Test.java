@@ -11,18 +11,26 @@ import it.unica.ro.cvrpb.solver.construction.CVRPBBaseInitializer;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
-import it.unica.ro.cvrpb.solver.strategies.BestExchangeStrategy;
+import it.unica.ro.cvrpb.solver.strategies.BestImprovementStrategy;
 
 import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        // read instance
         CVRPBInstance instance = new CVRPBInstanceReader(Settings.instancesPath + "A1.txt").read();
         System.out.println(instance);
 
         System.out.println("\n");
 
+        CVRPBSolver solver = new CVRPBSolver(new CVRPBBaseInitializer(), new BestImprovementStrategy());
+        CVRPBSolution res = solver.solve(instance);
+        res.forEach(route ->
+                System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
+        );
+
+    }
+
+    private static void tests(CVRPBInstance instance) {
         // construction
         CVRPBSolution solution = new CVRPBBaseInitializer().buildSolution(instance);
         solution.forEach(route ->
@@ -91,12 +99,5 @@ public class Test {
         }
 
         System.out.println("\n");
-
-        CVRPBSolver solver = new CVRPBSolver(new CVRPBBaseInitializer(), new BestExchangeStrategy());
-        CVRPBSolution res = solver.solve(instance);
-        res.forEach(route ->
-                System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
-        );
-
     }
 }

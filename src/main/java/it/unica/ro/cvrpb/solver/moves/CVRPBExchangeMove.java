@@ -50,7 +50,7 @@ public class CVRPBExchangeMove implements CVRPBMove {
                 costs.get(prevSecond, firstCustomer) +
                 costs.get(firstCustomer, nextSecond);
 
-        if (firstRoute.equals(secondRoute) && Math.abs(secondIndex - firstIndex) == 1) {
+        if (firstRoute == secondRoute && Math.abs(secondIndex - firstIndex) == 1) {
             localPreCondition -= costs.get(firstCustomer, nextFirst) +
                     costs.get(prevSecond, secondCustomer);
         }
