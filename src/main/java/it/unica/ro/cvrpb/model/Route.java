@@ -129,7 +129,7 @@ public class Route implements Iterable<Node> {
             if (newLoad > getCapacity()) {
                 throw new RouteCapacityException();
             }
-            linehaulCustomers.set(i, (LinehaulCustomer) c);
+            linehaulCustomers.set(i - 1, (LinehaulCustomer) c);
             deliveryLoad = newLoad;
             return;
         }

@@ -11,7 +11,7 @@ public class CVRPBSolutionNodeIterator implements Iterator<Node> {
     private final CVRPBSolution solution;
     private Route.RouteIterator nodeLevelIterator = null;
 
-    public CVRPBSolutionNodeIterator(CVRPBSolution solution) {
+    CVRPBSolutionNodeIterator(CVRPBSolution solution) {
         if (solution == null) {
             throw new IllegalArgumentException("Solution cannot be null");
         }
@@ -24,6 +24,25 @@ public class CVRPBSolutionNodeIterator implements Iterator<Node> {
         int nextRouteIndex = iterator.nextRouteIndex();
         int nextNodeIndex = iterator.nextNodeIndex();
 
+        routeLevelIterator = solution.getRoutes().listIterator(nextRouteIndex);
+        if (nextRouteIndex != 0) {
+            nodeLevelIterator = solution.getRoutes().get(nextRouteIndex - 1).iterator(nextNodeIndex);
+        }
+    }
+
+    CVRPBSolutionNodeIterator(CVRPBSolution solution, int nextRouteIndex, int nextNodeIndex) {
+        if (solution == null) {
+            throw new IllegalArgumentException("Solution cannot be null");
+        }
+        if (nextRouteIndex < 0 || nextRouteIndex > solution.size()) {
+            throw new IndexOutOfBoundsException("Index " + nextRouteIndex + "is out of bounds");
+        }
+        Route route = solution.getRoutes().get(nextRouteIndex);
+        if (nextNodeIndex < 0 || nextNodeIndex > route.size()) {
+            throw new IndexOutOfBoundsException("Index " + nextNodeIndex + "is out of bounds");
+        }
+
+        this.solution = solution;
         routeLevelIterator = solution.getRoutes().listIterator(nextRouteIndex);
         if (nextRouteIndex != 0) {
             nodeLevelIterator = solution.getRoutes().get(nextRouteIndex - 1).iterator(nextNodeIndex);

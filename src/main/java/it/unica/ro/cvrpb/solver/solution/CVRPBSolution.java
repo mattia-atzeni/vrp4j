@@ -3,10 +3,7 @@ package it.unica.ro.cvrpb.solver.solution;
 
 import it.unica.ro.cvrpb.model.Route;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class CVRPBSolution implements Iterable<Route> {
@@ -36,11 +33,19 @@ public class CVRPBSolution implements Iterable<Route> {
         return new CVRPBSolutionNodeIterator(this);
     }
 
+    public CVRPBSolutionNodeIterator nodeIterator(int nextRoute, int nextNode) {
+        return new CVRPBSolutionNodeIterator(this, nextRoute, nextNode);
+    }
+
     public List<Route> getRoutes() {
         return routes;
     }
 
     public double getTotalCost() {
         return stream().mapToDouble(Route::getCost).sum();
+    }
+
+    public void shuffle() {
+        Collections.shuffle(routes);
     }
 }
