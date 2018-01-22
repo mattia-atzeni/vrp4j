@@ -20,9 +20,14 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        HomeView home = new HomeView();
-        home.show();
-        home.getController().handleInput();
+        try {
+            HomeView home = new HomeView();
+            home.show();
+            home.getController().handleInput();
+        } catch (Throwable t) {
+            System.out.println("Something went wrong.");
+            System.out.println(t.getMessage());
+        }
     }
 
     public static void solveAll() throws IOException {

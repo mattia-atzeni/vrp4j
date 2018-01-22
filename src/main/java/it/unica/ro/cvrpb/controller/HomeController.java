@@ -1,6 +1,7 @@
 package it.unica.ro.cvrpb.controller;
 
 import it.unica.ro.cvrpb.Main;
+import it.unica.ro.cvrpb.Settings;
 import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.view.InstancePickerView;
 import it.unica.ro.cvrpb.view.View;
@@ -39,9 +40,12 @@ public class HomeController extends CVRPBController<HomeView> {
             Main.solveAll();
             System.out.println();
             System.out.println("All problems have been solved successfully!");
+            System.out.println("Check " + Settings.solutionPath + " for more details.");
         } catch (IOException e) {
             System.out.println("Something went wrong");
             System.out.println(e.getMessage());
+            System.out.println("Check that instance files are placed in " + Settings.instancesPath);
+            System.out.println();
         }
         System.out.println();
         System.out.println("Type return to come back to home");

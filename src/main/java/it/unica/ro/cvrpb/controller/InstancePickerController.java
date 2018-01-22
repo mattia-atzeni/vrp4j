@@ -1,6 +1,7 @@
 package it.unica.ro.cvrpb.controller;
 
 import it.unica.ro.cvrpb.Main;
+import it.unica.ro.cvrpb.Settings;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.view.InstancePickerView;
@@ -21,9 +22,10 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
         String fileName = "";
         try {
             Scanner scanner = new Scanner(System.in);
-            fileName = scanner.nextLine();
+            fileName = scanner.nextLine().trim();
+            System.out.println();
 
-            if (fileName.trim().toLowerCase().equals("exit")) {
+            if (fileName.trim().toLowerCase().equals("back")) {
                 exit();
                 return;
             }
@@ -41,6 +43,7 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
             exit();
         } catch (IOException e) {
             System.out.println("Cannot read file " + fileName);
+            System.out.println("Check that instance files are placed in " + Settings.instancesPath);
             System.out.println();
             getView().show();
             handleInput();
