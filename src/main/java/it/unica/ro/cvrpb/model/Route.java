@@ -22,8 +22,8 @@ public class Route implements Iterable<Node> {
         }
         this.instance = instance;
         int n = instance.getNumberOfVehicles();
-        int linehaulCapacity = 2 * instance.getNumberOfLinehaulCustomers() / n;
-        int backhaulCapacity = 2 * instance.getNumberOfBackhaulCustomers() / n;
+        int linehaulCapacity = 2 * instance.getLinehaulCount() / n;
+        int backhaulCapacity = 2 * instance.getBackhaulCount() / n;
         linehaulCustomers = new ArrayList<>(linehaulCapacity);
         backhaulCustomers = new ArrayList<>(backhaulCapacity);
     }

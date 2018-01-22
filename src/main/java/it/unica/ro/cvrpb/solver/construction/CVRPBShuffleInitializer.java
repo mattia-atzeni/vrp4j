@@ -14,7 +14,7 @@ import java.util.function.BiFunction;
 public class CVRPBShuffleInitializer implements CVRPBInitializer {
 
     private CVRPBBaseInitializer base = new CVRPBBaseInitializer();
-    private int iterations = 100;
+    private int iterations = 300;
 
     @Override
     public CVRPBSolution buildSolution(CVRPBInstance instance) {

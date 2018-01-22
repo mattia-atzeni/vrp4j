@@ -13,24 +13,45 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 import it.unica.ro.cvrpb.solver.strategies.BestImprovementStrategy;
+import it.unica.ro.cvrpb.writers.CVRPBWriter;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Test {
     public static void main(String[] args) throws IOException {
-        CVRPBInstance instance = new CVRPBInstanceReader(Settings.instancesPath + "A1.txt").read();
-        System.out.println(instance);
+        CVRPBInstance problem = new CVRPBInstanceReader(Settings.instancesPath + "N6.txt").read();
+        System.out.println(problem);
 
         System.out.println("\n");
 
         CVRPBSolver solver = new CVRPBSolver(new CVRPBShuffleInitializer(), new BestImprovementStrategy());
-        CVRPBSolution solution = solver.solve(instance);
-        solution.forEach(route ->
-                System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
-        );
-        System.out.println();
-        System.out.println("Cost: " + solution.getTotalCost());
 
+        long tic = System.currentTimeMillis();
+        CVRPBSolution solution = solver.buildInitialSolution(problem);
+        long toc = System.currentTimeMillis();
+        long constructionTime = toc - tic;
+
+        tic = System.currentTimeMillis();
+        solver.localSearch(solution);
+        toc = System.currentTimeMillis();
+        long localSearchTime = toc - tic;
+
+        String fileName = Settings.solutionPath + "N6_solution.txt";
+        try (CVRPBWriter writer = new CVRPBWriter(new File(fileName))) {
+            writer.writeInstanceFileName("N6.txt");
+            writer.println();
+
+            writer.writeProblemDetails(problem);
+            writer.println();
+
+            writer.writeConstructionTime(constructionTime);
+            writer.writeLocalSearchTIme(localSearchTime);
+            writer.writeTotalTime(constructionTime + localSearchTime);
+            writer.println();
+
+            writer.writeSolutionDetails(solution);
+        }
     }
 
     private static void tests(CVRPBInstance instance) {
