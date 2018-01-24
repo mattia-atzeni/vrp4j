@@ -36,14 +36,20 @@ public class CVRPBSolutionChecker {
     }
 
     private boolean checkCapacity(Route route) {
-        return checkCapacity(route.getLinehaulCustomers()) &&
-                checkCapacity(route.getBackhaulCustomers()) &&
-                route.checkLoad();
-    }
+        int deliveryLoad = route.getDeliveryLoad();
+        int actualDeliveryLoad = route.getLinehaulCustomers().stream()
+                .mapToInt(Customer::getLoad).sum();
 
-    private boolean checkCapacity(List<? extends Customer> customers) {
-        int load = customers.stream().mapToInt(Customer::getLoad).sum();
-        return load <= instance.getCapacity();
+        int pickupLoad = route.getPickupLoad();
+        int actualPickupLoad = route.getBackhaulCustomers().stream()
+                .mapToInt(Customer::getLoad).sum();
+
+        int capacity = route.getCapacity();
+
+        return deliveryLoad == actualDeliveryLoad &&
+                pickupLoad == actualPickupLoad &&
+                pickupLoad <= capacity &&
+                deliveryLoad <= capacity;
     }
 
     private boolean checkCustomerPath(Route route) {

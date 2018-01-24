@@ -3,7 +3,7 @@ package it.unica.ro.cvrpb;
 import it.unica.ro.cvrpb.model.CVRPBInstance;
 import it.unica.ro.cvrpb.readers.CVRPBInstanceReader;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
-import it.unica.ro.cvrpb.solver.construction.CVRPBShuffleInitializer;
+import it.unica.ro.cvrpb.solver.construction.CVRPBRandomInitializer;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.solver.strategies.BestImprovementStrategy;
@@ -48,7 +48,7 @@ public class Main {
         String inputPath = Settings.instancesPath + inputFileName;
         CVRPBInstance problem = new CVRPBInstanceReader(inputPath).read();
 
-        CVRPBSolver solver = new CVRPBSolver(new CVRPBShuffleInitializer(), new BestImprovementStrategy());
+        CVRPBSolver solver = new CVRPBSolver(new CVRPBRandomInitializer(), new BestImprovementStrategy());
 
         System.out.println("Solving " + inputFileName);
 
