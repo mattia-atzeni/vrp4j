@@ -1,14 +1,14 @@
-package it.unica.ro.cvrpb.solver.strategies;
+package it.unica.ro.cvrpb.solver.localsearch;
 
-import it.unica.ro.cvrpb.solver.moves.CVRPBRelocateMove;
+import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
 public class BestRelocateStrategy extends BestMoveStrategy {
-    private CVRPBRelocateMove bestMove;
+    private RelocateMove bestMove;
 
     @Override
-    public CVRPBRelocateMove findBestMove(CVRPBSolution solution) {
+    public RelocateMove findBestMove(CVRPBSolution solution) {
         if (solution == null) {
             throw new IllegalArgumentException("Solution cannot be null");
         }
@@ -31,13 +31,13 @@ public class BestRelocateStrategy extends BestMoveStrategy {
     }
 
     private void updateMove(CVRPBSolutionNodeIterator mainIterator, CVRPBSolutionNodeIterator secondIterator) {
-        CVRPBRelocateMove currentMove = new CVRPBRelocateMove(mainIterator, secondIterator);
+        RelocateMove currentMove = new RelocateMove(mainIterator, secondIterator);
         if (!currentMove.isLegal()) {
             return;
         }
         double t = getThreshold();
-        if ((bestMove == null && currentMove.evalAdvantage() > t) ||
-            (bestMove != null && currentMove.compareTo(bestMove) > t)) {
+        if ((bestMove == null && currentMove.gain() > t) ||
+            (bestMove != null && currentMove.gain() - bestMove.gain() > t)) {
             bestMove = currentMove;
         }
     }

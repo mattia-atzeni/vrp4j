@@ -1,6 +1,6 @@
 package it.unica.ro.cvrpb.writers;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
@@ -25,7 +25,7 @@ public class CVRPBWriter implements AutoCloseable {
         writer.println("Solution of problem: " + fileName);
     }
 
-    public void writeProblemDetails(CVRPBInstance problem) {
+    public void writeProblemDetails(CVRPBProblem problem) {
         writer.println("PROBLEM DETAILS");
         writer.println("Customers: " + problem.getCustomersCount());
         writer.println("Linehaul Customers: " + problem.getLinehaulCount());

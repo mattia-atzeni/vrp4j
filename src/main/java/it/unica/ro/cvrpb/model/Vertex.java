@@ -1,18 +1,35 @@
 package it.unica.ro.cvrpb.model;
 
+/**
+ * The Vertex class represents a point in a 2D space
+ * A vertex has two real value attributes, representing respectively the x and y coordinates
+ */
 public class Vertex {
     private final double x;
     private final double y;
 
+    /**
+     * Constructs a vertex, given its coordinates
+     * @param x the x coordinate
+     * @param y the y coordinate
+     */
     public Vertex(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Returns the x coordinate of this vertex
+     * @return the X coordinate of this vertex
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * Returns the y coordinate of this vertex
+     * @return the y coordinate of this vertex
+     */
     public double getY() {
         return y;
     }

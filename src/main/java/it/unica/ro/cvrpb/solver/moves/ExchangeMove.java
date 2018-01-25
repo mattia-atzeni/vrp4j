@@ -6,7 +6,7 @@ import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.CostTable;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
-public class CVRPBExchangeMove implements CVRPBMove {
+public class ExchangeMove implements CVRPBMove {
 
     private final Route firstRoute;
     private final int firstIndex;
@@ -16,7 +16,7 @@ public class CVRPBExchangeMove implements CVRPBMove {
     private final int secondIndex;
     private final Customer secondCustomer;
 
-    public CVRPBExchangeMove(CVRPBSolutionNodeIterator first, CVRPBSolutionNodeIterator second) {
+    public ExchangeMove(CVRPBSolutionNodeIterator first, CVRPBSolutionNodeIterator second) {
         if (first == null || second == null) {
             throw new IllegalArgumentException("Iterator cannot be null");
         }
@@ -31,7 +31,7 @@ public class CVRPBExchangeMove implements CVRPBMove {
     }
 
     @Override
-    public double evalAdvantage() {
+    public double gain() {
         CostTable costs = firstRoute.getProblem().getCosts();
 
         Node prevFirst = firstRoute.get(firstIndex - 1);
@@ -102,7 +102,7 @@ public class CVRPBExchangeMove implements CVRPBMove {
 
     @Override
     public int compareTo(CVRPBMove o) {
-        return (int) Math.ceil(this.evalAdvantage() - o.evalAdvantage());
+        return (int) Math.ceil(this.gain() - o.gain());
     }
 
     @Override

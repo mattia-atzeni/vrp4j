@@ -1,23 +1,23 @@
 package it.unica.ro.cvrpb.solver.construction;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Route;
-import it.unica.ro.cvrpb.solver.moves.CVRPBExchangeMove;
+import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
 import it.unica.ro.cvrpb.solver.moves.CVRPBMove;
-import it.unica.ro.cvrpb.solver.moves.CVRPBRelocateMove;
+import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
 import java.util.Random;
 import java.util.function.BiFunction;
 
-public class CVRPBRandomInitializer implements CVRPBInitializer {
+public class RandomConstructionStrategy implements ConstructionStrategy {
 
-    private CVRPBShuffleInitializer shuffle = new CVRPBShuffleInitializer();
+    private ShuffleConstructionStrategy shuffle = new ShuffleConstructionStrategy();
     private int iterations = 300;
 
     @Override
-    public CVRPBSolution buildSolution(CVRPBInstance instance) {
+    public CVRPBSolution buildSolution(CVRPBProblem instance) {
         CVRPBSolution solution = shuffle.buildSolution(instance);
         for (int i = 0; i < iterations; i++) {
             applyRandomMove(solution);
@@ -28,9 +28,9 @@ public class CVRPBRandomInitializer implements CVRPBInitializer {
     private void applyRandomMove(CVRPBSolution solution) {
         int i = new Random().nextInt();
         if (i % 2 == 0) {
-            applyRandomMove(solution, CVRPBExchangeMove::new);
+            applyRandomMove(solution, ExchangeMove::new);
         } else {
-            applyRandomMove(solution, CVRPBRelocateMove::new);
+            applyRandomMove(solution, RelocateMove::new);
         }
     }
 

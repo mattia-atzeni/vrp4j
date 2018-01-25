@@ -1,7 +1,7 @@
 package it.unica.ro.cvrpb.solver.moves;
 
 public interface CVRPBMove extends Comparable<CVRPBMove> {
-    double evalAdvantage();
+    double gain();
     boolean isLegal();
     void apply();
 }

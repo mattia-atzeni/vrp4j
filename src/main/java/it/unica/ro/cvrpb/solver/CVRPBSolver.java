@@ -1,16 +1,16 @@
 package it.unica.ro.cvrpb.solver;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
-import it.unica.ro.cvrpb.solver.construction.CVRPBInitializer;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
+import it.unica.ro.cvrpb.solver.construction.ConstructionStrategy;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
-import it.unica.ro.cvrpb.solver.strategies.CVRPBStrategy;
+import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
 
 public class CVRPBSolver {
 
-    private final CVRPBInitializer initializer;
-    private final CVRPBStrategy strategy;
+    private final ConstructionStrategy initializer;
+    private final LocalSearchStrategy strategy;
 
-    public CVRPBSolver(CVRPBInitializer initializer, CVRPBStrategy strategy) {
+    public CVRPBSolver(ConstructionStrategy initializer, LocalSearchStrategy strategy) {
         if (initializer == null) {
             throw new IllegalArgumentException("Initializer cannot be null");
         }
@@ -21,17 +21,17 @@ public class CVRPBSolver {
         this.strategy = strategy;
     }
 
-    public CVRPBSolution solve(CVRPBInstance instance) {
+    public CVRPBSolution solve(CVRPBProblem instance) {
         CVRPBSolution solution = initializer.buildSolution(instance);
-        strategy.apply(solution);
+        strategy.minimize(solution);
         return solution;
     }
 
-    public CVRPBSolution buildInitialSolution(CVRPBInstance instance) {
+    public CVRPBSolution buildInitialSolution(CVRPBProblem instance) {
         return initializer.buildSolution(instance);
     }
 
     public void localSearch(CVRPBSolution solution) {
-        strategy.apply(solution);
+        strategy.minimize(solution);
     }
 }

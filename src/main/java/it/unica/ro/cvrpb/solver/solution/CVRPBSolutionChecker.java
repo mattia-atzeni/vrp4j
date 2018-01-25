@@ -1,6 +1,6 @@
 package it.unica.ro.cvrpb.solver.solution;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Customer;
 import it.unica.ro.cvrpb.model.Route;
 
@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CVRPBSolutionChecker {
-    private CVRPBInstance instance;
+    private CVRPBProblem instance;
 
-    public CVRPBSolutionChecker(CVRPBInstance instance) {
+    public CVRPBSolutionChecker(CVRPBProblem instance) {
         this.instance = instance;
     }
 

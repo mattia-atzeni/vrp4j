@@ -1,8 +1,8 @@
-package it.unica.ro.cvrpb.solver.strategies;
+package it.unica.ro.cvrpb.solver.localsearch;
 
-import it.unica.ro.cvrpb.solver.moves.CVRPBExchangeMove;
+import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
 import it.unica.ro.cvrpb.solver.moves.CVRPBMove;
-import it.unica.ro.cvrpb.solver.moves.CVRPBRelocateMove;
+import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
 public class BestImprovementStrategy extends BestMoveStrategy {
@@ -17,8 +17,8 @@ public class BestImprovementStrategy extends BestMoveStrategy {
 
     @Override
     public CVRPBMove findBestMove(CVRPBSolution solution) {
-        CVRPBExchangeMove exchangeMove = bestExchange.findBestMove(solution);
-        CVRPBRelocateMove relocateMove = bestRelocate.findBestMove(solution);
+        ExchangeMove exchangeMove = bestExchange.findBestMove(solution);
+        RelocateMove relocateMove = bestRelocate.findBestMove(solution);
 
         CVRPBMove bestMove = exchangeMove;
 

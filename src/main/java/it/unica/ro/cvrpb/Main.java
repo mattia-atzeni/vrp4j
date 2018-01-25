@@ -1,12 +1,12 @@
 package it.unica.ro.cvrpb;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
-import it.unica.ro.cvrpb.readers.CVRPBInstanceReader;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
+import it.unica.ro.cvrpb.readers.CVRPBReader;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
-import it.unica.ro.cvrpb.solver.construction.CVRPBRandomInitializer;
+import it.unica.ro.cvrpb.solver.construction.RandomConstructionStrategy;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
-import it.unica.ro.cvrpb.solver.strategies.BestImprovementStrategy;
+import it.unica.ro.cvrpb.solver.localsearch.BestImprovementStrategy;
 import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.writers.CVRPBWriter;
 
@@ -46,9 +46,9 @@ public class Main {
 
     public static CVRPBSolution solve(String inputFileName) throws IOException {
         String inputPath = Settings.instancesPath + inputFileName;
-        CVRPBInstance problem = new CVRPBInstanceReader(inputPath).read();
+        CVRPBProblem problem = new CVRPBReader().read(inputPath);
 
-        CVRPBSolver solver = new CVRPBSolver(new CVRPBRandomInitializer(), new BestImprovementStrategy());
+        CVRPBSolver solver = new CVRPBSolver(new RandomConstructionStrategy(), new BestImprovementStrategy());
 
         System.out.println("Solving " + inputFileName);
 
