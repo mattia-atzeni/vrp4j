@@ -1,17 +1,17 @@
 package it.unica.ro.cvrpb.controller;
 
-import it.unica.ro.cvrpb.Main;
+import it.unica.ro.cvrpb.CVRPBSolverApp;
 import it.unica.ro.cvrpb.Settings;
-import it.unica.ro.cvrpb.view.HomeView;
+import it.unica.ro.cvrpb.view.OneVsAllView;
 import it.unica.ro.cvrpb.view.InstancePickerView;
 import it.unica.ro.cvrpb.view.View;
 
 import java.io.IOException;
 import java.util.Scanner;
 
-public class HomeController extends CVRPBController<HomeView> {
+public class OneVsAllController extends CVRPBController<OneVsAllView> {
 
-    public HomeController(HomeView view) {
+    public OneVsAllController(OneVsAllView view) {
         super(view);
     }
 
@@ -23,21 +23,23 @@ public class HomeController extends CVRPBController<HomeView> {
             choice = scanner.nextInt();
             System.out.println();
         } catch (Exception e) {
-            handleInvalidInput();
+            handleInvalidInputRange(1, 3);
             return;
         }
 
         switch (choice) {
             case 1: handleSolveAll(); break;
             case 2: handleSpecificInstance(); break;
-            case 3: exit(); break;
-            default: handleInvalidInput(); break;
+            case 3: home(); break;
+            default: handleInvalidInputRange(1, 3); break;
         }
     }
 
     private void handleSolveAll() {
         try {
-            Main.solveAll();
+            System.out.println("Applying " + CVRPBSolverApp.getSolver());
+            System.out.println();
+            CVRPBSolverApp.solveAll();
             System.out.println();
             System.out.println("All problems have been solved successfully!");
             System.out.println("Check " + Settings.solutionPath + " for more details.");
@@ -50,26 +52,12 @@ public class HomeController extends CVRPBController<HomeView> {
         System.out.println();
         System.out.println("Press return to come back to home");
         new Scanner(System.in).nextLine();
-        System.out.println();
-        getView().show();
-        getView().getController().handleInput();
-    }
-
-    private void exit() {
-        System.out.println();
-        System.out.println("Bye!");
+        home();
     }
 
     private void handleSpecificInstance() {
         View view = new InstancePickerView();
         view.show();
         view.getController().handleInput();
-    }
-
-    private void handleInvalidInput() {
-        System.out.println("You should enter a value between 1 and 3");
-        System.out.println();
-        System.out.print("> ");
-        handleInput();
     }
 }

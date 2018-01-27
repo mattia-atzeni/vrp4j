@@ -1,4 +1,4 @@
-package it.unica.ro.cvrpb.solver.localsearch;
+package it.unica.ro.cvrpb.solver.localsearch.multistage;
 
 import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
@@ -23,5 +23,10 @@ public class BestExchange extends BestImprovement<ExchangeMove> {
             }
         }
         return best;
+    }
+
+    @Override
+    public String toString() {
+        return "Best Exchange";
     }
 }

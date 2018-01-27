@@ -4,11 +4,11 @@ import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.readers.CVRPBReader;
 import it.unica.ro.cvrpb.solver.CVRPBMultiStartSolver;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
-import it.unica.ro.cvrpb.solver.construction.RandomConstructionStrategy;
-import it.unica.ro.cvrpb.solver.localsearch.BestRelocateExchange;
+import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
+import it.unica.ro.cvrpb.solver.localsearch.multistage.BestRelocateExchange;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
-import it.unica.ro.cvrpb.view.HomeView;
+import it.unica.ro.cvrpb.view.StrategyChoiceView;
 import it.unica.ro.cvrpb.writers.CVRPBWriter;
 
 import java.io.File;
@@ -20,16 +20,30 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Main {
+public class CVRPBSolverApp {
+
+    private static LocalSearchStrategy strategy = new BestRelocateExchange();
+    private static CVRPBSolver solver = new CVRPBMultiStartSolver(strategy);
+
     public static void main(String[] args) {
         try {
-            HomeView home = new HomeView();
+            StrategyChoiceView home = new StrategyChoiceView();
             home.show();
             home.getController().handleInput();
         } catch (Throwable t) {
             System.out.println("Something went wrong.");
-            System.out.println(t.getMessage());
+            if (t.getMessage() != null) {
+                System.out.println(t.getMessage());
+            }
         }
+    }
+
+    public static void setStrategy(LocalSearchStrategy strategy) {
+        CVRPBSolverApp.strategy = strategy;
+    }
+
+    public static void setSolver(CVRPBSolver solver) {
+        CVRPBSolverApp.solver = solver;
     }
 
     public static void solveAll() throws IOException {
@@ -49,21 +63,30 @@ public class Main {
         String inputPath = Settings.instancesPath + inputFileName;
         CVRPBProblem problem = new CVRPBReader().read(inputPath);
 
-        CVRPBSolver solver = new CVRPBMultiStartSolver(new RandomConstructionStrategy(), new BestRelocateExchange());
-
         System.out.println("Solving " + inputFileName);
 
-        long tic = System.currentTimeMillis();
-        CVRPBSolution solution = solver.buildInitialSolution(problem);
-        long toc = System.currentTimeMillis();
-        long constructionTime = toc - tic;
+        long constructionTime = -1;
+        long localSearchTime = -1;
+        long totalTime;
+        CVRPBSolution solution;
 
-        tic = System.currentTimeMillis();
-        solver.localSearch(solution);
-        toc = System.currentTimeMillis();
-        long localSearchTime = toc - tic;
+        if (!(solver instanceof CVRPBMultiStartSolver)) {
+            long tic = System.currentTimeMillis();
+            solution = solver.buildInitialSolution(problem);
+            long toc = System.currentTimeMillis();
+            constructionTime = toc - tic;
 
-        solution = solver.solve(problem);
+            tic = System.currentTimeMillis();
+            solver.localSearch(solution);
+            toc = System.currentTimeMillis();
+            localSearchTime = toc - tic;
+            totalTime = localSearchTime + constructionTime;
+        } else {
+            long tic = System.currentTimeMillis();
+            solution = solver.solve(problem);
+            long toc = System.currentTimeMillis();
+            totalTime = toc - tic;
+        }
 
         CVRPBSolutionChecker checker = new CVRPBSolutionChecker(problem);
         if (!checker.check(solution)) {
@@ -83,9 +106,11 @@ public class Main {
             writer.writeProblemDetails(problem);
             writer.println();
 
-            writer.writeConstructionTime(constructionTime);
-            writer.writeLocalSearchTIme(localSearchTime);
-            writer.writeTotalTime(constructionTime + localSearchTime);
+            if (constructionTime != -1 && localSearchTime != -1) {
+                writer.writeConstructionTime(constructionTime);
+                writer.writeLocalSearchTIme(localSearchTime);
+            }
+            writer.writeTotalTime(totalTime);
             writer.println();
 
             writer.writeSolutionDetails(solution);
@@ -94,4 +119,11 @@ public class Main {
         return solution;
     }
 
+    public static LocalSearchStrategy getLocalSearchStrategy() {
+        return strategy;
+    }
+
+    public static CVRPBSolver getSolver() {
+        return solver;
+    }
 }

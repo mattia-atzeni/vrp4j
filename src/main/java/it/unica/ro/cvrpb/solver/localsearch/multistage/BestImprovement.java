@@ -1,7 +1,8 @@
-package it.unica.ro.cvrpb.solver.localsearch;
+package it.unica.ro.cvrpb.solver.localsearch.multistage;
 
 
 import it.unica.ro.cvrpb.model.Customer;
+import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
 import it.unica.ro.cvrpb.solver.moves.MoveOperator;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;

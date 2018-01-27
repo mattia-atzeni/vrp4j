@@ -7,6 +7,12 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
 public class InstancePickerView extends CVRPBView {
 
+    private final InstancePickerController controller;
+
+    public InstancePickerView() {
+        this.controller = new InstancePickerController(this);
+    }
+
     @Override
     public void show() {
         System.out.println("Type the name of the instance you want to solve (A1 - N6)");
@@ -17,7 +23,7 @@ public class InstancePickerView extends CVRPBView {
 
     @Override
     public Controller getController() {
-        return new InstancePickerController(this);
+        return controller;
     }
 
     public void onSolutionFound(String outputFileName, CVRPBSolution solution) {

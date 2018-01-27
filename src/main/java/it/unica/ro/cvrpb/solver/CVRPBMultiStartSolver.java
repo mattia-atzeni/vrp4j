@@ -1,7 +1,7 @@
 package it.unica.ro.cvrpb.solver;
 
 import it.unica.ro.cvrpb.model.CVRPBProblem;
-import it.unica.ro.cvrpb.solver.construction.ConstructionStrategy;
+import it.unica.ro.cvrpb.solver.construction.RandomConstructionStrategy;
 import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
@@ -9,8 +9,8 @@ public class CVRPBMultiStartSolver extends CVRPBSolver {
 
     private int iterations = 1000;
 
-    public CVRPBMultiStartSolver(ConstructionStrategy initializer, LocalSearchStrategy strategy) {
-        super(initializer, strategy);
+    public CVRPBMultiStartSolver(LocalSearchStrategy localSearchStrategy) {
+        super(new RandomConstructionStrategy(), localSearchStrategy);
     }
 
     @Override
@@ -37,5 +37,10 @@ public class CVRPBMultiStartSolver extends CVRPBSolver {
             throw new IllegalArgumentException("Number of iterations should be greater than 0");
         }
         this.iterations = iterations;
+    }
+
+    @Override
+    public String toString() {
+        return "Multi-Start with " + getLocalSearchStrategy();
     }
 }
