@@ -1,10 +1,10 @@
-package it.unica.ro.cvrpb.solver.localsearch;
+package it.unica.ro.cvrpb.solver.localsearch.greedy;
 
 import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
-public class BestExchangeStrategy extends BestMoveStrategy {
+public class BestGreedyExchange extends BestGreedyImprovement {
 
     public ExchangeMove findBestMove(CVRPBSolution solution) {
         if (solution == null) {

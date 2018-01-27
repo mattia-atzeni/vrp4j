@@ -7,31 +7,31 @@ import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
 
 public class CVRPBSolver {
 
-    private final ConstructionStrategy initializer;
-    private final LocalSearchStrategy strategy;
+    private final ConstructionStrategy construction;
+    private final LocalSearchStrategy localSearch;
 
-    public CVRPBSolver(ConstructionStrategy initializer, LocalSearchStrategy strategy) {
-        if (initializer == null) {
+    public CVRPBSolver(ConstructionStrategy construction, LocalSearchStrategy localSearch) {
+        if (construction == null) {
             throw new IllegalArgumentException("Initializer cannot be null");
         }
-        if (strategy == null) {
+        if (localSearch == null) {
             throw new IllegalArgumentException("Strategy cannot be null");
         }
-        this.initializer = initializer;
-        this.strategy = strategy;
+        this.construction = construction;
+        this.localSearch = localSearch;
     }
 
     public CVRPBSolution solve(CVRPBProblem instance) {
-        CVRPBSolution solution = initializer.buildSolution(instance);
-        strategy.minimize(solution);
+        CVRPBSolution solution = construction.buildSolution(instance);
+        localSearch.minimize(solution);
         return solution;
     }
 
     public CVRPBSolution buildInitialSolution(CVRPBProblem instance) {
-        return initializer.buildSolution(instance);
+        return construction.buildSolution(instance);
     }
 
     public void localSearch(CVRPBSolution solution) {
-        strategy.minimize(solution);
+        localSearch.minimize(solution);
     }
 }

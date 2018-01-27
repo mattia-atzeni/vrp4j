@@ -2,11 +2,12 @@ package it.unica.ro.cvrpb;
 
 import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.readers.CVRPBReader;
+import it.unica.ro.cvrpb.solver.CVRPBMultiStartSolver;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.construction.RandomConstructionStrategy;
+import it.unica.ro.cvrpb.solver.localsearch.BestRelocateExchange;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
-import it.unica.ro.cvrpb.solver.localsearch.BestImprovementStrategy;
 import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.writers.CVRPBWriter;
 
@@ -48,7 +49,7 @@ public class Main {
         String inputPath = Settings.instancesPath + inputFileName;
         CVRPBProblem problem = new CVRPBReader().read(inputPath);
 
-        CVRPBSolver solver = new CVRPBSolver(new RandomConstructionStrategy(), new BestImprovementStrategy());
+        CVRPBSolver solver = new CVRPBMultiStartSolver(new RandomConstructionStrategy(), new BestRelocateExchange());
 
         System.out.println("Solving " + inputFileName);
 
@@ -61,6 +62,8 @@ public class Main {
         solver.localSearch(solution);
         toc = System.currentTimeMillis();
         long localSearchTime = toc - tic;
+
+        solution = solver.solve(problem);
 
         CVRPBSolutionChecker checker = new CVRPBSolutionChecker(problem);
         if (!checker.check(solution)) {

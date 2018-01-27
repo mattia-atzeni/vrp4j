@@ -7,6 +7,7 @@ package it.unica.ro.cvrpb.model;
 public abstract class Customer extends Node {
 
     private final int load;
+    private boolean marked = false;
 
     /**
      * Constructs a customer, given its coordinates and the required amount of product
@@ -39,5 +40,21 @@ public abstract class Customer extends Node {
      */
     public int getLoad() {
         return load;
+    }
+
+    /**
+     * Checks whether this node is marked
+     * @return true if this node has been marked, false otherwise
+     */
+    public boolean isMarked() {
+        return marked;
+    }
+
+    /**
+     * Marks or unmark this node with a boolean flag
+     * @param marked true to mark this node, false to unmark
+     */
+    public void setMarked(boolean marked) {
+        this.marked = marked;
     }
 }

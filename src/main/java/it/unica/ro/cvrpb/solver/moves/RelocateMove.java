@@ -6,7 +6,7 @@ import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.CostTable;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
-public class RelocateMove implements CVRPBMove {
+public class RelocateMove implements MoveOperator {
 
     private final Route fromRoute;
     private final int fromIndex;
@@ -95,7 +95,7 @@ public class RelocateMove implements CVRPBMove {
     }
 
     @Override
-    public int compareTo(CVRPBMove o) {
+    public int compareTo(MoveOperator o) {
         return (int) Math.ceil(this.gain() - o.gain());
     }
 

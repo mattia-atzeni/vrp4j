@@ -307,6 +307,11 @@ public class Route implements Iterable<Node> {
         return Range.between(getLinehaulCount() + 1, size());
     }
 
+    public void unmarkAll() {
+        linehaulCustomers.forEach(c -> c.setMarked(false));
+        backhaulCustomers.forEach(c -> c.setMarked(false));
+    }
+
     @Override
     public String toString() {
         return "0 " + getCustomers().stream()

@@ -7,6 +7,8 @@ public abstract class Node {
     private final Vertex vertex;
     private final int label;
 
+    private boolean marked = false;
+
     private static int counter = 0;
 
     /**

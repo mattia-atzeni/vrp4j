@@ -50,6 +50,10 @@ public class CVRPBSolution implements Iterable<Route> {
         Collections.shuffle(routes);
     }
 
+    public void unmarkAll() {
+        forEach(Route::unmarkAll);
+    }
+
     @Override
     public String toString() {
         return stream().map(Object::toString)

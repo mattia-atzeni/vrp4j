@@ -1,5 +1,6 @@
 package it.unica.ro.cvrpb.solver.solution;
 
+import it.unica.ro.cvrpb.model.Customer;
 import it.unica.ro.cvrpb.model.Node;
 import it.unica.ro.cvrpb.model.Route;
 
@@ -66,7 +67,7 @@ public class CVRPBSolutionNodeIterator implements Iterator<Node> {
         return routeLevelIterator.hasNext() || nodeLevelIterator.hasNextCustomer();
     }
 
-    public Node nextCustomer() {
+    public Customer nextCustomer() {
         if (nodeLevelIterator == null || !nodeLevelIterator.hasNextCustomer()) {
             nodeLevelIterator = routeLevelIterator.next().iterator();
         }
