@@ -34,13 +34,13 @@ public class CVRPBMultiStartSolver extends CVRPBSolver {
 
     public void setIterations(int iterations) {
         if (iterations <= 0) {
-            throw new IllegalArgumentException("Number of iterations should be greater than 0");
+            throw new IllegalArgumentException("The number of iterations should be greater than 0");
         }
         this.iterations = iterations;
     }
 
     @Override
     public String toString() {
-        return "Multi-Start with " + getLocalSearchStrategy();
+        return "Multi-Start with " + getLocalSearchStrategy() + " strategy";
     }
 }
