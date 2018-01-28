@@ -42,11 +42,11 @@ public class OneVsAllController extends CVRPBController<OneVsAllView> {
             CVRPBSolverApp.solveAll();
             System.out.println();
             System.out.println("All problems have been solved successfully!");
-            System.out.println("Check " + Settings.solutionPath + " for more details.");
+            System.out.println("Check " + Settings.SOLUTION_PATH + " for more details.");
         } catch (IOException e) {
             System.out.println("Something went wrong");
             System.out.println(e.getMessage());
-            System.out.println("Check that instance files are placed in " + Settings.instancesPath);
+            System.out.println("Check that instance files are placed in " + Settings.INSTANCES_PATH);
             System.out.println();
         }
         System.out.println();

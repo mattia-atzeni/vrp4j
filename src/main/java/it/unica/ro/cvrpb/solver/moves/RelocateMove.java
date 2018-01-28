@@ -6,6 +6,10 @@ import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.CostTable;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
+/**
+ * The RelocateMove class represents a move relocating a node into a different position
+ * within the same or a different route.
+ */
 public class RelocateMove implements MoveOperator {
 
     private final Route fromRoute;
@@ -16,6 +20,12 @@ public class RelocateMove implements MoveOperator {
     private final Route toRoute;
     private final int toIndex;
 
+    /**
+     * Creates a relocate move given an iterator to the node to be relocated and an
+     * iterator to the position where this node has to be placed
+     * @param from an iterator to the position of the node to be moved
+     * @param to an iterator to the position where we want to place the node
+     */
     public RelocateMove(CVRPBSolutionNodeIterator from, CVRPBSolutionNodeIterator to) {
         if (from == null || to == null) {
             throw new IllegalArgumentException("Iterator cannot be null");
@@ -29,6 +39,9 @@ public class RelocateMove implements MoveOperator {
         this.toIndex = to.lastNodeIndex();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double gain() {
         CostTable costs = fromRoute.getProblem().getCosts();
@@ -58,11 +71,18 @@ public class RelocateMove implements MoveOperator {
         return localPreCost - localPostCost;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isLegal() {
         return checkCapacity() && checkCustomersOrder();
     }
 
+    /**
+     * Checks that this move does not violate the capacity constraint
+     * @return true if this move is legal, false if this move violates the capacity constraint
+     */
     private boolean checkCapacity() {
         if (fromRoute == toRoute) {
             return true;
@@ -74,6 +94,12 @@ public class RelocateMove implements MoveOperator {
         return toLoad + customer.getLoad() <= toRoute.getCapacity();
     }
 
+    /**
+     * Checks that this move does not violate the precedence constraint and that it
+     * does not create routes without linehaul customers
+     * @return true if this move is legal, false if this move creates routes with only
+     * backhaul customers or if it violates the precedence constraint
+     */
     private boolean checkCustomersOrder() {
         if (customer.isLinehaul() && fromRoute.getLinehaulCount() == 1) {
             return false;
@@ -84,6 +110,9 @@ public class RelocateMove implements MoveOperator {
         return toRoute.getValidBackhaulRange().contains(toIndex);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void apply() {
         fromRoute.removeCustomer(fromIndex);
@@ -92,11 +121,6 @@ public class RelocateMove implements MoveOperator {
             i--;
         }
         toRoute.addCustomer(customer, i);
-    }
-
-    @Override
-    public int compareTo(MoveOperator o) {
-        return (int) Math.ceil(this.gain() - o.gain());
     }
 
     @Override
