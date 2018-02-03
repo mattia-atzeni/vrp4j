@@ -30,7 +30,7 @@ public class GreedyRelocateExchange extends BestGreedyImprovement {
             return exchangeMove;
         }
 
-        if (relocateMove.compareTo(exchangeMove) > getThreshold()) {
+        if (relocateMove.gain() - bestMove.gain() > getThreshold()) {
             bestMove = relocateMove;
         }
 
