@@ -1,0 +1,85 @@
+Solution of problem: N6.txt
+
+PROBLEM DETAILS
+Customers: 150
+Linehaul Customers: 100
+Backhaul Customers: 50
+Capacity: 8500
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 472720.956
+
+Lower Bound: 373759.0
+GAP: 0.265
+Construction phase time: 0.0 seconds
+Local search time: 0.021 seconds
+Total time: 0.021 seconds
+
+SOLUTION
+Routes: 8
+
+ROUTE 0
+Cost: 18332.321
+Delivery Load: 3791
+Pick-Up Load: 0
+Customers in Route: 6
+Vertex Sequence:
+0 54 109 108 59 83 62 0
+
+ROUTE 1
+Cost: 50593.053
+Delivery Load: 7448
+Pick-Up Load: 311
+Customers in Route: 13
+Vertex Sequence:
+0 80 112 71 148 121 77 118 61 131 123 114 72 6 0
+
+ROUTE 2
+Cost: 45469.943
+Delivery Load: 7540
+Pick-Up Load: 0
+Customers in Route: 15
+Vertex Sequence:
+0 105 132 110 143 136 130 98 67 145 122 106 137 88 86 52 0
+
+ROUTE 3
+Cost: 69014.277
+Delivery Load: 8319
+Pick-Up Load: 3753
+Customers in Route: 26
+Vertex Sequence:
+0 104 119 89 82 129 58 146 150 64 144 113 117 149 93 97 120 35 49 13 50 20 36 47 34 24 32 0
+
+ROUTE 4
+Cost: 74332.510
+Delivery Load: 5404
+Pick-Up Load: 5657
+Customers in Route: 20
+Vertex Sequence:
+0 55 135 111 141 125 127 128 66 75 5 22 10 19 25 11 8 15 37 18 26 0
+
+ROUTE 5
+Cost: 116607.387
+Delivery Load: 8488
+Pick-Up Load: 7123
+Customers in Route: 33
+Vertex Sequence:
+0 57 81 138 53 85 68 90 94 101 115 102 96 78 92 133 56 74 38 31 42 2 23 30 14 1 16 29 45 21 40 9 46 41 0
+
+ROUTE 6
+Cost: 46815.299
+Delivery Load: 8038
+Pick-Up Load: 2532
+Customers in Route: 20
+Vertex Sequence:
+0 87 60 51 107 91 100 70 63 142 76 73 65 103 134 95 69 39 28 17 27 0
+
+ROUTE 7
+Cost: 51556.166
+Delivery Load: 5072
+Pick-Up Load: 3463
+Customers in Route: 17
+Vertex Sequence:
+0 124 84 139 140 126 116 99 147 79 48 43 33 7 4 3 12 44 0
+

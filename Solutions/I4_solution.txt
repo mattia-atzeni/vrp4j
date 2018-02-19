@@ -1,0 +1,69 @@
+Solution of problem: I4.txt
+
+PROBLEM DETAILS
+Customers: 90
+Linehaul Customers: 45
+Backhaul Customers: 45
+Capacity: 5700
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 380147.291
+
+Lower Bound: 295988.0
+GAP: 0.284
+Construction phase time: 0.0 seconds
+Local search time: 0.004 seconds
+Total time: 0.004 seconds
+
+SOLUTION
+Routes: 6
+
+ROUTE 0
+Cost: 33947.245
+Delivery Load: 1693
+Pick-Up Load: 1730
+Customers in Route: 6
+Vertex Sequence:
+0 67 84 52 37 32 24 0
+
+ROUTE 1
+Cost: 37485.747
+Delivery Load: 435
+Pick-Up Load: 5520
+Customers in Route: 10
+Vertex Sequence:
+0 54 21 5 8 26 42 38 28 23 18 0
+
+ROUTE 2
+Cost: 70944.472
+Delivery Load: 4369
+Pick-Up Load: 5578
+Customers in Route: 18
+Vertex Sequence:
+0 81 49 72 56 62 70 90 76 29 15 10 41 25 12 44 31 17 27 0
+
+ROUTE 3
+Cost: 65252.085
+Delivery Load: 4203
+Pick-Up Load: 4406
+Customers in Route: 15
+Vertex Sequence:
+0 64 68 60 50 82 80 48 3 35 33 9 7 30 1 45 0
+
+ROUTE 4
+Cost: 100686.274
+Delivery Load: 5647
+Pick-Up Load: 5672
+Customers in Route: 25
+Vertex Sequence:
+0 78 79 88 65 66 47 75 74 69 58 61 53 77 83 13 43 22 40 16 34 36 20 19 6 11 0
+
+ROUTE 5
+Cost: 71831.467
+Delivery Load: 5080
+Pick-Up Load: 2710
+Customers in Route: 16
+Vertex Sequence:
+0 55 85 51 87 89 71 46 73 59 57 63 86 2 39 4 14 0
+

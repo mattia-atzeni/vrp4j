@@ -1,0 +1,75 @@
+Text File with Solution Of Problem: N6.txt
+
+PROBLEM DETAILS:
+Customers = 150
+Max Load = 8500
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 373759.0
+Routes Of the Solution = 8
+
+ROUTE 0:
+Cost = 598287.0000
+Delivery Load = 8202
+Pick-Up  Load = 5604
+Customers in Route = 25
+Vertex Sequence :
+0 104 119 60 51 107 74 73 65 76 91 100 70 79 63 142 4 7 48 43 33 39 28 17 27 38 0 
+
+ROUTE 1:
+Cost = 553882.0000
+Delivery Load = 8279
+Pick-Up  Load = 1502
+Customers in Route = 20
+Vertex Sequence :
+0 62 83 59 96 102 123 114 78 72 56 103 95 69 134 133 92 42 31 2 6 0 
+
+ROUTE 2:
+Cost = 362960.0000
+Delivery Load = 8111
+Pick-Up  Load = 1803
+Customers in Route = 19
+Vertex Sequence :
+0 105 132 124 84 110 127 128 143 136 97 120 126 116 139 140 34 10 24 32 0 
+
+ROUTE 3:
+Cost = 658412.0000
+Delivery Load = 7388
+Pick-Up  Load = 4787
+Customers in Route = 23
+Vertex Sequence :
+0 52 141 125 145 122 106 137 88 86 53 68 85 21 40 9 46 16 29 45 1 14 30 23 0 
+
+ROUTE 4:
+Cost = 265426.0000
+Delivery Load = 5464
+Pick-Up  Load = 1995
+Customers in Route = 13
+Vertex Sequence :
+0 55 135 111 54 109 108 101 94 115 37 18 26 41 0 
+
+ROUTE 5:
+Cost = 4554.0000
+Delivery Load = 498
+Pick-Up  Load = 0
+Customers in Route = 1
+Vertex Sequence :
+0 87 0 
+
+ROUTE 6:
+Cost = 753022.0000
+Delivery Load = 8474
+Pick-Up  Load = 4966
+Customers in Route = 31
+Vertex Sequence :
+0 89 82 129 58 146 99 147 150 64 144 113 117 149 93 130 98 66 67 75 5 22 35 49 47 36 20 50 13 3 12 44 0 
+
+ROUTE 7:
+Cost = 541045.0000
+Delivery Load = 7684
+Pick-Up  Load = 2182
+Customers in Route = 18
+Vertex Sequence :
+0 57 81 80 138 90 112 71 148 121 77 118 61 131 11 8 15 25 19 0 
+

@@ -1,0 +1,51 @@
+Text File with Solution Of Problem: G3.txt
+
+PROBLEM DETAILS:
+Customers = 57
+Max Load = 5300
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 229507.0
+Routes Of the Solution = 5
+
+ROUTE 0:
+Cost = 309110.0000
+Delivery Load = 4498
+Pick-Up  Load = 0
+Customers in Route = 9
+Vertex Sequence :
+0 19 54 56 25 18 34 52 41 16 0 
+
+ROUTE 1:
+Cost = 438316.0000
+Delivery Load = 4975
+Pick-Up  Load = 1364
+Customers in Route = 11
+Vertex Sequence :
+0 26 40 27 35 33 38 48 22 1 12 3 0 
+
+ROUTE 2:
+Cost = 378959.0000
+Delivery Load = 4211
+Pick-Up  Load = 446
+Customers in Route = 10
+Vertex Sequence :
+0 46 57 32 14 29 37 23 39 42 2 0 
+
+ROUTE 3:
+Cost = 725533.0000
+Delivery Load = 5126
+Pick-Up  Load = 2686
+Customers in Route = 16
+Vertex Sequence :
+0 51 24 21 31 55 45 30 36 28 17 5 10 6 4 7 9 0 
+
+ROUTE 4:
+Cost = 443156.0000
+Delivery Load = 5023
+Pick-Up  Load = 1107
+Customers in Route = 11
+Vertex Sequence :
+0 43 53 13 20 44 50 49 47 15 11 8 0 
+

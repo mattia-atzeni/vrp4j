@@ -1,0 +1,59 @@
+Text File with Solution Of Problem: G2.txt
+
+PROBLEM DETAILS:
+Customers = 57
+Max Load = 4300
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 245441.0
+Routes Of the Solution = 6
+
+ROUTE 0:
+Cost = 410156.0000
+Delivery Load = 3957
+Pick-Up  Load = 0
+Customers in Route = 8
+Vertex Sequence :
+0 43 19 16 31 55 21 45 24 0 
+
+ROUTE 1:
+Cost = 546030.0000
+Delivery Load = 3768
+Pick-Up  Load = 2686
+Customers in Route = 13
+Vertex Sequence :
+0 40 26 51 30 36 28 17 5 10 6 4 7 9 0 
+
+ROUTE 2:
+Cost = 378959.0000
+Delivery Load = 4211
+Pick-Up  Load = 446
+Customers in Route = 10
+Vertex Sequence :
+0 46 57 32 14 29 37 23 39 42 2 0 
+
+ROUTE 3:
+Cost = 395171.0000
+Delivery Load = 3888
+Pick-Up  Load = 1364
+Customers in Route = 9
+Vertex Sequence :
+0 27 35 33 38 48 22 1 12 3 0 
+
+ROUTE 4:
+Cost = 289310.0000
+Delivery Load = 4049
+Pick-Up  Load = 0
+Customers in Route = 8
+Vertex Sequence :
+0 53 34 52 18 25 41 56 54 0 
+
+ROUTE 5:
+Cost = 434783.0000
+Delivery Load = 3960
+Pick-Up  Load = 1107
+Customers in Route = 9
+Vertex Sequence :
+0 13 20 44 50 49 47 15 11 8 0 
+

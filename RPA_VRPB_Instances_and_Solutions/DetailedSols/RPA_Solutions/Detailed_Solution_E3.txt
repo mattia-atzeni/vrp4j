@@ -1,0 +1,43 @@
+Text File with Solution Of Problem: E3.txt
+
+PROBLEM DETAILS:
+Customers = 45
+Max Load = 5225
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 206659.0
+Routes Of the Solution = 4
+
+ROUTE 0:
+Cost = 879172.0000
+Delivery Load = 4824
+Pick-Up  Load = 3814
+Customers in Route = 18
+Vertex Sequence :
+0 28 31 19 36 16 27 17 38 18 10 11 5 15 1 14 4 12 6 0 
+
+ROUTE 1:
+Cost = 705184.0000
+Delivery Load = 4942
+Pick-Up  Load = 1648
+Customers in Route = 14
+Vertex Sequence :
+0 33 23 21 37 24 39 30 35 45 41 25 3 7 9 0 
+
+ROUTE 2:
+Cost = 468277.0000
+Delivery Load = 5105
+Pick-Up  Load = 1578
+Customers in Route = 12
+Vertex Sequence :
+0 34 43 22 32 40 42 26 20 29 8 2 13 0 
+
+ROUTE 3:
+Cost = 13960.0000
+Delivery Load = 783
+Pick-Up  Load = 0
+Customers in Route = 1
+Vertex Sequence :
+0 44 0 
+

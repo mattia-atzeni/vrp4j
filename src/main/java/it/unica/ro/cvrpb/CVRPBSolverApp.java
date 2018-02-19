@@ -39,6 +39,7 @@ public class CVRPBSolverApp {
      */
     public static void main(String[] args) {
         try {
+            createSolutionDirectory();
             StrategyChoiceView home = new StrategyChoiceView();
             home.show();
             home.getController().handleInput();
@@ -50,6 +51,13 @@ public class CVRPBSolverApp {
         }
         if (csvWriter != null) {
             csvWriter.close();
+        }
+    }
+
+    private static void createSolutionDirectory() throws IOException {
+        Path solutionPath = Paths.get(Settings.SOLUTION_PATH);
+        if (!Files.exists(solutionPath)) {
+            Files.createDirectory(solutionPath);
         }
     }
 
@@ -139,10 +147,6 @@ public class CVRPBSolverApp {
         }
 
         String outputFileName = inputFileName.replace(".txt", "") + "_solution.txt";
-        Path solutionPath = Paths.get(Settings.SOLUTION_PATH);
-        if (!Files.exists(solutionPath)) {
-            Files.createDirectory(solutionPath);
-        }
         String outputPath = Settings.SOLUTION_PATH + outputFileName;
 
         try (CVRPBWriter writer = new CVRPBWriter(new File(outputPath))) {

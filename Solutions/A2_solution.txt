@@ -1,0 +1,61 @@
+Solution of problem: A2.txt
+
+PROBLEM DETAILS
+Customers: 25
+Linehaul Customers: 20
+Backhaul Customers: 5
+Capacity: 2550
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 193777.712
+
+Lower Bound: 180119.0
+GAP: 0.076
+Construction phase time: 0.0 seconds
+Local search time: 0.003 seconds
+Total time: 0.003 seconds
+
+SOLUTION
+Routes: 5
+
+ROUTE 0
+Cost: 33839.424
+Delivery Load: 2298
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence:
+0 11 12 10 14 21 0
+
+ROUTE 1
+Cost: 31069.012
+Delivery Load: 1898
+Pick-Up Load: 194
+Customers in Route: 5
+Vertex Sequence:
+0 24 20 9 17 5 0
+
+ROUTE 2
+Cost: 49289.611
+Delivery Load: 2003
+Pick-Up Load: 549
+Customers in Route: 5
+Vertex Sequence:
+0 6 23 19 22 1 0
+
+ROUTE 3
+Cost: 38333.759
+Delivery Load: 1556
+Pick-Up Load: 388
+Customers in Route: 4
+Vertex Sequence:
+0 18 7 16 4 0
+
+ROUTE 4
+Cost: 41245.905
+Delivery Load: 2294
+Pick-Up Load: 1409
+Customers in Route: 6
+Vertex Sequence:
+0 15 8 13 25 3 2 0
+
