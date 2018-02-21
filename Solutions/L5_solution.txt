@@ -8,19 +8,19 @@ Capacity: 6000
 
 Local Search with Combination of Best Exchange and Best Relocate strategy
 
-Total cost: 556469.404
+Total cost: 556469,404
 
 Lower Bound: 387565.0
-GAP: 0.436
-Construction phase time: 0.0 seconds
-Local search time: 0.023 seconds
-Total time: 0.023 seconds
+GAP: 0,436
+Construction phase time: 0.004 seconds
+Local search time: 0.048 seconds
+Total time: 0.052 seconds
 
 SOLUTION
 Routes: 8
 
 ROUTE 0
-Cost: 8044.673
+Cost: 8044,673
 Delivery Load: 254
 Pick-Up Load: 475
 Customers in Route: 2
@@ -28,7 +28,7 @@ Vertex Sequence:
 0 148 67 0
 
 ROUTE 1
-Cost: 45947.951
+Cost: 45947,951
 Delivery Load: 4800
 Pick-Up Load: 2549
 Customers in Route: 17
@@ -36,7 +36,7 @@ Vertex Sequence:
 0 105 104 124 99 137 88 91 82 123 133 150 48 69 37 58 5 29 0
 
 ROUTE 2
-Cost: 80836.300
+Cost: 80836,300
 Delivery Load: 5905
 Pick-Up Load: 5928
 Customers in Route: 24
@@ -44,7 +44,7 @@ Vertex Sequence:
 0 129 128 120 134 135 106 116 147 139 142 127 112 20 30 75 40 73 28 21 38 26 16 72 71 0
 
 ROUTE 3
-Cost: 111382.883
+Cost: 111382,883
 Delivery Load: 5906
 Pick-Up Load: 5817
 Customers in Route: 28
@@ -52,7 +52,7 @@ Vertex Sequence:
 0 138 141 110 103 89 93 87 145 80 143 136 118 94 95 96 51 43 70 54 27 57 49 31 66 7 13 63 18 0
 
 ROUTE 4
-Cost: 87256.583
+Cost: 87256,583
 Delivery Load: 2975
 Pick-Up Load: 5955
 Customers in Route: 19
@@ -60,7 +60,7 @@ Vertex Sequence:
 0 122 84 140 77 90 98 9 3 74 53 34 4 6 52 47 14 46 50 44 0
 
 ROUTE 5
-Cost: 107148.548
+Cost: 107148,548
 Delivery Load: 5934
 Pick-Up Load: 5731
 Customers in Route: 23
@@ -68,7 +68,7 @@ Vertex Sequence:
 0 83 107 113 121 149 109 108 101 146 79 86 102 19 59 15 36 41 8 42 12 33 24 56 0
 
 ROUTE 6
-Cost: 47600.368
+Cost: 47600,368
 Delivery Load: 5745
 Pick-Up Load: 3550
 Customers in Route: 17
@@ -76,7 +76,7 @@ Vertex Sequence:
 0 111 125 92 100 126 131 132 76 78 144 55 39 45 61 64 11 23 0
 
 ROUTE 7
-Cost: 68252.099
+Cost: 68252,099
 Delivery Load: 3574
 Pick-Up Load: 5696
 Customers in Route: 20
