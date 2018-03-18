@@ -1,5 +1,7 @@
 package it.unica.ro.cvrpb.model;
 
+import it.unica.ro.cvrpb.CostTable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +13,7 @@ public class CVRPBInstance {
     private final Depot depot;
     private final List<BackhaulCustomer> backhaulCustomers;
     private final List<LinehaulCustomer> linehaulCustomers;
+    private final CostTable costs;
 
     private CVRPBInstance(CVRPBInstanceBuilder builder) {
         numberOfCustomers = builder.numberOfCustomers;
@@ -19,6 +22,7 @@ public class CVRPBInstance {
         depot = builder.depot;
         backhaulCustomers = builder.backhaulCustomers;
         linehaulCustomers = builder.linehaulCustomers;
+        costs = new CostTable(this);
     }
 
     public int getNumberOfCustomers() {
@@ -53,10 +57,22 @@ public class CVRPBInstance {
         return new ArrayList<>(linehaulCustomers);
     }
 
+    public int getNumberOfLinehaulCustomers() {
+        return linehaulCustomers.size();
+    }
+
+    public int getNumberOfBackhaulCustomers() {
+        return backhaulCustomers.size();
+    }
+
     public List<Customer> getCustomers() {
         List<Customer> customers = new ArrayList<>(linehaulCustomers);
         customers.addAll(backhaulCustomers);
         return customers;
+    }
+
+    public CostTable getCosts() {
+        return costs;
     }
 
     public static CVRPBInstanceBuilder builder() {

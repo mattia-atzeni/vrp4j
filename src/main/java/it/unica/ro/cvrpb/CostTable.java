@@ -27,6 +27,10 @@ public class CostTable {
         }
     }
 
+    public double get(Node a, Node b) {
+        return get(a.getLabel(), b.getLabel());
+    }
+
     public double get(int i, int j) {
         if (i == j) {
             return 0.0;
