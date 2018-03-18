@@ -1,9 +1,6 @@
 package it.unica.ro.cvrpb.readers;
 
-import it.unica.ro.cvrpb.model.BackhaulCustomer;
-import it.unica.ro.cvrpb.model.CVRPBInstance;
-import it.unica.ro.cvrpb.model.LinehaulCustomer;
-import it.unica.ro.cvrpb.model.Vertex;
+import it.unica.ro.cvrpb.model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +24,7 @@ public class CVRPBInstanceReader {
             scanner.nextInt(); // 1
             int numberOfVehicles = scanner.nextInt();
 
-            Vertex depot = parseVertex(scanner);
+            Depot depot = parseDepot(scanner);
             scanner.nextInt(); // 0
             int capacity = scanner.nextInt();
 
@@ -43,6 +40,11 @@ public class CVRPBInstanceReader {
                     .setLinehaulCustomers(linehaulCustomers)
                     .build();
         }
+    }
+
+    private Depot parseDepot(Scanner scanner) {
+        Vertex v = parseVertex(scanner);
+        return new Depot(v);
     }
 
     private List<BackhaulCustomer> parseBackhaulCustomers(Scanner scanner) {
