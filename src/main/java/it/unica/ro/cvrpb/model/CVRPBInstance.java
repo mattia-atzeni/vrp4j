@@ -1,6 +1,7 @@
 package it.unica.ro.cvrpb.model;
 
-import it.unica.ro.cvrpb.CostTable;
+import it.unica.ro.cvrpb.Builder;
+import it.unica.ro.cvrpb.solver.CostTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class CVRPBInstance {
         return numberOfCustomers;
     }
 
-    public int getNumberofVehicles() {
+    public int getNumberOfVehicles() {
         return numberofVehicles;
     }
 

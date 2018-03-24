@@ -1,7 +1,7 @@
 package it.unica.ro.cvrpb.model;
 
 
-public class Node {
+public abstract class Node {
     private final Vertex vertex;
     private final int label;
 

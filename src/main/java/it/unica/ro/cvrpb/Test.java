@@ -2,7 +2,16 @@ package it.unica.ro.cvrpb;
 
 
 import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.Customer;
+import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.readers.CVRPBInstanceReader;
+import it.unica.ro.cvrpb.solver.CVRPBSolver;
+import it.unica.ro.cvrpb.solver.CostTable;
+import it.unica.ro.cvrpb.solver.construction.CVRPBBaseInitializer;
+import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
+import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
+import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
+import it.unica.ro.cvrpb.solver.strategies.BestExchangeStrategy;
 
 import java.io.IOException;
 
@@ -15,7 +24,7 @@ public class Test {
         System.out.println("\n");
 
         // construction
-        CVRPBSolution solution = new CVRPBSolution(instance);
+        CVRPBSolution solution = new CVRPBBaseInitializer().buildSolution(instance);
         solution.forEach(route ->
                 System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
         );
@@ -24,21 +33,23 @@ public class Test {
         System.out.println();
         boolean legal = new CVRPBSolutionChecker(instance).check(solution);
         System.out.println(legal);
+        System.out.println();
 
         // check iterators
-        CVRPBSolution.NodeLevelIterator it = solution.nodeLevelIterator();
+        CVRPBSolutionNodeIterator it = solution.nodeIterator();
         while (it.hasNextCustomer()) {
             System.out.print(it.nextCustomer().getLabel() + " ");
         }
         System.out.println();
 
         int i = 0;
-        it = solution.nodeLevelIterator();
+        it = solution.nodeIterator();
         while (it.hasNextCustomer() && i++ < 10) {
             System.out.print(it.nextCustomer().getLabel() + " ");
         }
         System.out.println();
-        CVRPBSolution.NodeLevelIterator it2 = solution.nodeLevelIterator(it.nextRouteIndex(), it.nextNodeIndex());
+
+        CVRPBSolutionNodeIterator it2 = new CVRPBSolutionNodeIterator(it);
         while (it.hasNextCustomer()) {
             System.out.print(it.nextCustomer().getLabel() + " ");
         }
@@ -57,6 +68,35 @@ public class Test {
         System.out.println(costs.get(9, 9));
         System.out.println(costs.get(25, 24));
         System.out.println(costs.get(24, 25));
+
+        System.out.println("\n");
+
+        Route r1 = solution.getRoutes().get(5);
+        r1.removeCustomer(1);
+        System.out.println(r1);
+        Route r2 = solution.getRoutes().get(4);
+        System.out.println(r2);
+
+        Customer c = r2.getCustomer(2);
+        System.out.println(c);
+
+        for (int j = 1; j < r1.size(); j++) {
+            try {
+                r1.addCustomer(c, j);
+                System.out.println(r1);
+                r1.removeCustomer(j);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        System.out.println("\n");
+
+        CVRPBSolver solver = new CVRPBSolver(new CVRPBBaseInitializer(), new BestExchangeStrategy());
+        CVRPBSolution res = solver.solve(instance);
+        res.forEach(route ->
+                System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
+        );
 
     }
 }

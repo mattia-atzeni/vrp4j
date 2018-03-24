@@ -1,5 +1,8 @@
 package it.unica.ro.cvrpb.model;
 
+import it.unica.ro.cvrpb.exceptions.CustomerOrderException;
+import it.unica.ro.cvrpb.exceptions.RouteCapacityException;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,12 +13,14 @@ public class Route implements Iterable<Node> {
     private List<BackhaulCustomer> backhaulCustomers;
     private int deliveryLoad = 0;
     private int pickupLoad = 0;
-    private double cost = 0;
-    private final CVRPBInstance instance;
+    private CVRPBInstance instance;
 
     public Route(CVRPBInstance instance) {
+        if (instance == null) {
+            throw new IllegalArgumentException("Instance cannot be  null");
+        }
         this.instance = instance;
-        int n = instance.getNumberofVehicles();
+        int n = instance.getNumberOfVehicles();
         int linehaulCapacity = 2 * instance.getNumberOfLinehaulCustomers() / n;
         int backhaulCapacity = 2 * instance.getNumberOfBackhaulCustomers() / n;
         linehaulCustomers = new ArrayList<>(linehaulCapacity);
@@ -30,7 +35,7 @@ public class Route implements Iterable<Node> {
             if (linehaulCustomers.isEmpty()) {
                 throw new IllegalArgumentException(
                         "Trying to add a backhaul customer, but no " +
-                        "linehaul customer have been inserted yet."
+                        "linehaul customer has been inserted yet."
                 );
             }
             backhaulCustomers.add((BackhaulCustomer) c);
@@ -39,20 +44,96 @@ public class Route implements Iterable<Node> {
 
     }
 
-    public Node get(int i) {
-        int linehaulSize = linehaulCustomers.size();
-        int backhaulSize = backhaulCustomers.size();
-        int size = linehaulSize + backhaulSize;
+    public void addCustomer(Customer c, int i) {
+        if (i <= 0 || i >= size()) {
+            throw new IllegalArgumentException("Cannot add customer with index " + i);
+        }
 
-        if (i == 0 || i == size + 1) {
+        if (c.isLinehaul()) {
+            addLinehaulCustomer((LinehaulCustomer) c, i);
+        } else {
+            addBackhaulCustomer((BackhaulCustomer) c, i);
+        }
+    }
+
+    private void addLinehaulCustomer(LinehaulCustomer c, int i) {
+        if (deliveryLoad + c.getLoad() > instance.getCapacity()) {
+            throw new RouteCapacityException();
+        }
+        try {
+            linehaulCustomers.add(i - 1, c);
+            deliveryLoad += c.getLoad();
+        } catch (IndexOutOfBoundsException e) {
+            throw new CustomerOrderException();
+        }
+    }
+
+
+    private void addBackhaulCustomer(BackhaulCustomer c, int i) {
+        if (pickupLoad + c.getLoad() > instance.getCapacity()) {
+            throw new RouteCapacityException();
+        }
+        int lastLinehaulIndex = linehaulCustomers.size();
+        if (i <= lastLinehaulIndex || lastLinehaulIndex == 0) {
+            throw new CustomerOrderException();
+        }
+        int index = i - lastLinehaulIndex - 1;
+        backhaulCustomers.add(index, c);
+        pickupLoad += c.getLoad();
+
+    }
+
+    public Node get(int i) {
+        if (i == 0 || i == size() - 1) {
             return instance.getDepot();
         }
+
+        return getCustomer(i);
+    }
+
+    public Customer getCustomer(int i) {
+        int linehaulSize = linehaulCustomers.size();
 
         if (i <= linehaulSize) {
             return linehaulCustomers.get(i - 1);
         }
 
         return backhaulCustomers.get(i - linehaulSize - 1);
+    }
+
+    public void removeCustomer(int i) {
+        int linehaulCount = getLinehaulCount();
+        int backhaulCount = getBackhaulCount();
+        if (i <= 0 || i >= size() - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (linehaulCount == 1 && i == 1 && backhaulCount > 0) {
+            throw new CustomerOrderException();
+        }
+        if (i > linehaulCount) {
+            pickupLoad -= getCustomer(i).getLoad();
+            backhaulCustomers.remove(i - linehaulCount - 1);
+        } else {
+            deliveryLoad -= getCustomer(i).getLoad();
+            linehaulCustomers.remove(i - 1);
+        }
+    }
+
+    public void setCustomer(Customer c, int i) {
+        if (getLinehaulCount() == 1 && i == 1 && getBackhaulCount() > 0) {
+            if (c.isBackhaul()) {
+                throw new CustomerOrderException();
+            }
+            int newLoad = deliveryLoad - getCustomer(i).getLoad() + c.getLoad();
+            if (newLoad > getCapacity()) {
+                throw new RouteCapacityException();
+            }
+            linehaulCustomers.set(i, (LinehaulCustomer) c);
+            deliveryLoad = newLoad;
+            return;
+        }
+        removeCustomer(i);
+        addCustomer(c, i);
     }
 
     public boolean checkLoad() {
@@ -81,6 +162,22 @@ public class Route implements Iterable<Node> {
 
     public List<BackhaulCustomer> getBackhaulCustomers() {
         return new ArrayList<>(backhaulCustomers);
+    }
+
+    public CVRPBInstance getProblem() {
+        return instance;
+    }
+
+    public double getCapacity() {
+        return instance.getCapacity();
+    }
+
+    public int getLinehaulCount() {
+        return linehaulCustomers.size();
+    }
+
+    public int getBackhaulCount() {
+        return backhaulCustomers.size();
     }
 
     @Override
@@ -115,6 +212,12 @@ public class Route implements Iterable<Node> {
 
     public RouteIterator iterator(int nextIndex) {
         return new RouteIterator(nextIndex);
+    }
+
+    public int size() {
+        int linehaulSize = linehaulCustomers.size();
+        int backhaulSize = backhaulCustomers.size();
+        return linehaulSize + backhaulSize + 2;
     }
 
     public class RouteIterator implements Iterator<Node> {

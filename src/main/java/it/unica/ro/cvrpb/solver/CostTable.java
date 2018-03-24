@@ -1,4 +1,4 @@
-package it.unica.ro.cvrpb;
+package it.unica.ro.cvrpb.solver;
 
 import it.unica.ro.cvrpb.model.CVRPBInstance;
 import it.unica.ro.cvrpb.model.Node;
