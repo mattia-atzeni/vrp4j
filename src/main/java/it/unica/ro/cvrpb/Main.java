@@ -5,6 +5,7 @@ import it.unica.ro.cvrpb.readers.CVRPBInstanceReader;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.construction.CVRPBShuffleInitializer;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
+import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.solver.strategies.BestImprovementStrategy;
 import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.writers.CVRPBWriter;
@@ -60,6 +61,11 @@ public class Main {
         solver.localSearch(solution);
         toc = System.currentTimeMillis();
         long localSearchTime = toc - tic;
+
+        CVRPBSolutionChecker checker = new CVRPBSolutionChecker(problem);
+        if (!checker.check(solution)) {
+            throw new RuntimeException("Illegal solution");
+        }
 
         String outputFileName = inputFileName.replace(".txt", "") + "_solution.txt";
         Path solutionPath = Paths.get(Settings.solutionPath);
