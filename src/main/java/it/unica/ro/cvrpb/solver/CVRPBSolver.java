@@ -26,4 +26,12 @@ public class CVRPBSolver {
         strategy.apply(solution);
         return solution;
     }
+
+    public CVRPBSolution buildInitialSolution(CVRPBInstance instance) {
+        return initializer.buildSolution(instance);
+    }
+
+    public void localSearch(CVRPBSolution solution) {
+        strategy.apply(solution);
+    }
 }

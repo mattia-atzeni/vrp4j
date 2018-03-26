@@ -26,7 +26,7 @@ public class CVRPBInstance {
         costs = new CostTable(this);
     }
 
-    public int getNumberOfCustomers() {
+    public int getCustomersCount() {
         return numberOfCustomers;
     }
 
@@ -58,11 +58,11 @@ public class CVRPBInstance {
         return new ArrayList<>(linehaulCustomers);
     }
 
-    public int getNumberOfLinehaulCustomers() {
+    public int getLinehaulCount() {
         return linehaulCustomers.size();
     }
 
-    public int getNumberOfBackhaulCustomers() {
+    public int getBackhaulCount() {
         return backhaulCustomers.size();
     }
 
