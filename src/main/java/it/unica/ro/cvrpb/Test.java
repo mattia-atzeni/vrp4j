@@ -8,6 +8,7 @@ import it.unica.ro.cvrpb.readers.CVRPBInstanceReader;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.CostTable;
 import it.unica.ro.cvrpb.solver.construction.CVRPBBaseInitializer;
+import it.unica.ro.cvrpb.solver.construction.CVRPBShuffleInitializer;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
@@ -22,11 +23,13 @@ public class Test {
 
         System.out.println("\n");
 
-        CVRPBSolver solver = new CVRPBSolver(new CVRPBBaseInitializer(), new BestImprovementStrategy());
-        CVRPBSolution res = solver.solve(instance);
-        res.forEach(route ->
+        CVRPBSolver solver = new CVRPBSolver(new CVRPBShuffleInitializer(), new BestImprovementStrategy());
+        CVRPBSolution solution = solver.solve(instance);
+        solution.forEach(route ->
                 System.out.println(route + "\t" + route.getDeliveryLoad() + "\t" + route.getPickupLoad())
         );
+        System.out.println();
+        System.out.println("Cost: " + solution.getTotalCost());
 
     }
 

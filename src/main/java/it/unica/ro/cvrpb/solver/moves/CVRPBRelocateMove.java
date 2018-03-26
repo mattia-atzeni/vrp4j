@@ -58,18 +58,6 @@ public class CVRPBRelocateMove implements CVRPBMove {
         return localPreCost - localPostCost;
     }
 
-    private double handleSameRoute(CostTable costs, Node prevFrom, Node prevTo, Node nextTo) {
-        int diff = toIndex - fromIndex;
-        if (diff == 0 || diff == 1) {
-            return 0;
-        }
-        if (diff == 2) {
-            return costs.get(prevFrom, customer) - costs.get(prevFrom, nextTo);
-        }
-
-        return costs.get(prevTo, nextTo) - costs.get(prevTo, customer);
-    }
-
     @Override
     public boolean isLegal() {
         return checkCapacity() && checkCustomersOrder();

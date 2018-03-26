@@ -26,7 +26,11 @@ public class BestImprovementStrategy extends BestMoveStrategy {
             return relocateMove;
         }
 
-        if (relocateMove.compareTo(exchangeMove) > 0) {
+        if (relocateMove == null) {
+            return exchangeMove;
+        }
+
+        if (relocateMove.compareTo(exchangeMove) > getThreshold()) {
             bestMove = relocateMove;
         }
         return bestMove;
