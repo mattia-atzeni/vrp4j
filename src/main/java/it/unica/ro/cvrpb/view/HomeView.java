@@ -5,6 +5,7 @@ import it.unica.ro.cvrpb.controller.HomeController;
 public class HomeView extends CVRPBView {
     @Override
     public void show() {
+        clearScreen();
         printLogo();
         System.out.println();
         printMenu();

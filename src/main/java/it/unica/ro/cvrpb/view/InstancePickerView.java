@@ -10,7 +10,7 @@ public class InstancePickerView extends CVRPBView {
     @Override
     public void show() {
         System.out.println("Type the name of the instance you want to solve (A1 - N6)");
-        System.out.println("or type \"exit\" to come back to home:");
+        System.out.println("or type \"back\" to come back to home:");
         System.out.println();
         System.out.print("> ");
     }
