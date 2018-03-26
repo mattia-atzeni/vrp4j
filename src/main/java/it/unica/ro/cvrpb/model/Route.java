@@ -2,6 +2,7 @@ package it.unica.ro.cvrpb.model;
 
 import it.unica.ro.cvrpb.exceptions.CustomerOrderException;
 import it.unica.ro.cvrpb.exceptions.RouteCapacityException;
+import org.apache.commons.lang3.Range;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -189,6 +190,14 @@ public class Route implements Iterable<Node> {
 
     public int getBackhaulCount() {
         return backhaulCustomers.size();
+    }
+
+    public Range<Integer> getValidLinehaulRange() {
+        return Range.between(1, getLinehaulCount() + 1);
+    }
+
+    public Range<Integer> getValidBackhaulRange() {
+        return Range.between(getLinehaulCount() + 1, size());
     }
 
     @Override
