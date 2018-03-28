@@ -70,7 +70,7 @@ public class CVRPBExchangeMove implements CVRPBMove {
 
     private boolean checkCustomersOrder() {
         return firstCustomer.isLinehaul() == secondCustomer.isLinehaul() ||
-                (!firstRoute.equals(secondRoute) &&
+                (firstRoute != secondRoute &&
                 checkCustomersOrder(firstRoute, firstCustomer, firstIndex) &&
                 checkCustomersOrder(secondRoute, secondCustomer, secondIndex));
     }

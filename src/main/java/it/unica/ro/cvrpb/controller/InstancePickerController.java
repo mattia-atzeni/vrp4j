@@ -39,8 +39,6 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
             }
             String outputFileName = fileName.replace(".txt", "") + "_solution.txt";
             getView().onSolutionFound(outputFileName, solution);
-            scanner.nextLine();
-            exit();
         } catch (IOException e) {
             System.out.println("Cannot read file " + fileName);
             System.out.println("Check that instance files are placed in " + Settings.instancesPath);

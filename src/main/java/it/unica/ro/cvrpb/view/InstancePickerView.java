@@ -28,7 +28,9 @@ public class InstancePickerView extends CVRPBView {
         System.out.println();
         System.out.println(solution);
         System.out.println();
-        System.out.println("Type return to come back.");
+        System.out.println("Total Cost: " + solution.getTotalCost());
         System.out.println();
+        show();
+        getController().handleInput();
     }
 }

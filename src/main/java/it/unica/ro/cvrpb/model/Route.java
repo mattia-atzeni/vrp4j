@@ -5,6 +5,7 @@ import it.unica.ro.cvrpb.exceptions.RouteCapacityException;
 import org.apache.commons.lang3.Range;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,17 +31,9 @@ public class Route implements Iterable<Node> {
 
     public void addCustomer(Customer c) {
         if (c.isLinehaul()) {
-            linehaulCustomers.add((LinehaulCustomer) c);
-            deliveryLoad += c.getLoad();
+            addLinehaulCustomer((LinehaulCustomer) c, getLinehaulCount() + 1);
         } else {
-            if (linehaulCustomers.isEmpty()) {
-                throw new IllegalArgumentException(
-                        "Trying to add a backhaul customer, but no " +
-                        "linehaul customer has been inserted yet."
-                );
-            }
-            backhaulCustomers.add((BackhaulCustomer) c);
-            pickupLoad += c.getLoad();
+            addBackhaulCustomer((BackhaulCustomer) c, size() - 1);
         }
 
     }
@@ -58,7 +51,7 @@ public class Route implements Iterable<Node> {
     }
 
     private void addLinehaulCustomer(LinehaulCustomer c, int i) {
-        if (deliveryLoad + c.getLoad() > instance.getCapacity()) {
+        if (deliveryLoad + c.getDelivery() > instance.getCapacity()) {
             throw new RouteCapacityException();
         }
         try {
@@ -71,7 +64,7 @@ public class Route implements Iterable<Node> {
 
 
     private void addBackhaulCustomer(BackhaulCustomer c, int i) {
-        if (pickupLoad + c.getLoad() > instance.getCapacity()) {
+        if (pickupLoad + c.getPickup() > instance.getCapacity()) {
             throw new RouteCapacityException();
         }
         int lastLinehaulIndex = linehaulCustomers.size();
@@ -106,7 +99,7 @@ public class Route implements Iterable<Node> {
         int linehaulCount = getLinehaulCount();
         int backhaulCount = getBackhaulCount();
         if (i <= 0 || i >= size() - 1) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException("Cannot remove customer at index " + i);
         }
         if (linehaulCount == 1 && i == 1 && backhaulCount > 0) {
             throw new CustomerOrderException();
@@ -137,10 +130,9 @@ public class Route implements Iterable<Node> {
         addCustomer(c, i);
     }
 
-    public boolean checkLoad() {
-        int actualDeliveryLoad = linehaulCustomers.stream().mapToInt(Customer::getLoad).sum();
-        int actualPickupLoad = backhaulCustomers.stream().mapToInt(Customer::getLoad).sum();
-        return actualDeliveryLoad == deliveryLoad && actualPickupLoad == pickupLoad;
+    public void shuffle() {
+        Collections.shuffle(linehaulCustomers);
+        Collections.shuffle(backhaulCustomers);
     }
 
     public double getCost() {
@@ -180,7 +172,7 @@ public class Route implements Iterable<Node> {
         return instance;
     }
 
-    public double getCapacity() {
+    public int getCapacity() {
         return instance.getCapacity();
     }
 

@@ -48,7 +48,7 @@ public class HomeController extends CVRPBController<HomeView> {
             System.out.println();
         }
         System.out.println();
-        System.out.println("Type return to come back to home");
+        System.out.println("Press return to come back to home");
         new Scanner(System.in).nextLine();
         System.out.println();
         getView().show();
