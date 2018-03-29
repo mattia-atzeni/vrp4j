@@ -1,6 +1,6 @@
 package it.unica.ro.cvrpb.solver;
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Node;
 
 import java.util.Comparator;
@@ -10,7 +10,7 @@ public class CostTable {
     private final int n;
     private final double[] costs;
 
-    public CostTable(CVRPBInstance instance) {
+    public CostTable(CVRPBProblem instance) {
         List<Node> nodes = instance.getNodes();
         nodes.sort(Comparator.comparingInt(Node::getLabel));
 

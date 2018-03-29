@@ -1,7 +1,7 @@
 package it.unica.ro.cvrpb.solver.construction;
 
 
-import it.unica.ro.cvrpb.model.CVRPBInstance;
+import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Customer;
 import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
@@ -9,10 +9,10 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class CVRPBBaseInitializer implements CVRPBInitializer {
+public class BaseConstructionStrategy implements ConstructionStrategy {
 
     @Override
-    public CVRPBSolution buildSolution(CVRPBInstance instance) {
+    public CVRPBSolution buildSolution(CVRPBProblem instance) {
         int queueSize = instance.getNumberOfVehicles();
 
         Comparator<Route> linehaulComparator = Comparator.comparingInt(Route::getDeliveryLoad);

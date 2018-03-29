@@ -1,17 +1,17 @@
-package it.unica.ro.cvrpb.solver.strategies;
+package it.unica.ro.cvrpb.solver.localsearch;
 
-import it.unica.ro.cvrpb.solver.moves.CVRPBExchangeMove;
+import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
 public class BestExchangeStrategy extends BestMoveStrategy {
 
-    public CVRPBExchangeMove findBestMove(CVRPBSolution solution) {
+    public ExchangeMove findBestMove(CVRPBSolution solution) {
         if (solution == null) {
             throw new IllegalArgumentException("Solution cannot be null");
         }
         CVRPBSolutionNodeIterator mainIterator = solution.nodeIterator();
-        CVRPBExchangeMove bestMove = null;
+        ExchangeMove bestMove = null;
         double t = getThreshold();
 
         while (mainIterator.hasNextCustomer()) {
@@ -19,10 +19,10 @@ public class BestExchangeStrategy extends BestMoveStrategy {
             CVRPBSolutionNodeIterator secondIterator = new CVRPBSolutionNodeIterator(mainIterator);
             while (secondIterator.hasNextCustomer()) {
                 secondIterator.nextCustomer();
-                CVRPBExchangeMove currentMove = new CVRPBExchangeMove(mainIterator, secondIterator);
+                ExchangeMove currentMove = new ExchangeMove(mainIterator, secondIterator);
                 if (currentMove.isLegal()) {
-                    if ((bestMove == null && currentMove.evalAdvantage() > t) ||
-                        (bestMove != null && currentMove.compareTo(bestMove) > t)) {
+                    if ((bestMove == null && currentMove.gain() > t) ||
+                        (bestMove != null && currentMove.gain() - bestMove.gain() > t)) {
                         bestMove = currentMove;
                     }
                 }
