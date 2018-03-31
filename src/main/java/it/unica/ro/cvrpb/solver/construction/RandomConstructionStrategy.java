@@ -3,7 +3,7 @@ package it.unica.ro.cvrpb.solver.construction;
 import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
-import it.unica.ro.cvrpb.solver.moves.CVRPBMove;
+import it.unica.ro.cvrpb.solver.moves.MoveOperator;
 import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
@@ -12,14 +12,13 @@ import java.util.Random;
 import java.util.function.BiFunction;
 
 public class RandomConstructionStrategy implements ConstructionStrategy {
-
-    private ShuffleConstructionStrategy shuffle = new ShuffleConstructionStrategy();
     private int iterations = 300;
 
     @Override
     public CVRPBSolution buildSolution(CVRPBProblem instance) {
+        ShuffleConstructionStrategy shuffle = new ShuffleConstructionStrategy();
         CVRPBSolution solution = shuffle.buildSolution(instance);
-        for (int i = 0; i < iterations; i++) {
+        for (int i = 0; i < 300; i++) {
             applyRandomMove(solution);
         }
         return solution;
@@ -35,10 +34,10 @@ public class RandomConstructionStrategy implements ConstructionStrategy {
     }
 
     private interface MoveConstructor
-            extends BiFunction<CVRPBSolutionNodeIterator, CVRPBSolutionNodeIterator, CVRPBMove> {}
+            extends BiFunction<CVRPBSolutionNodeIterator, CVRPBSolutionNodeIterator, MoveOperator> {}
 
     private void applyRandomMove(CVRPBSolution solution, MoveConstructor moveConstructor) {
-        CVRPBMove move;
+        MoveOperator move;
         do {
             CVRPBSolutionNodeIterator first = getRandomIterator(solution);
             CVRPBSolutionNodeIterator second = getRandomIterator(solution);

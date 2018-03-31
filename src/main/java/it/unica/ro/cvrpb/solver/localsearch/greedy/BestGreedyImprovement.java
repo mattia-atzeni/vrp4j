@@ -1,15 +1,16 @@
-package it.unica.ro.cvrpb.solver.localsearch;
+package it.unica.ro.cvrpb.solver.localsearch.greedy;
 
-import it.unica.ro.cvrpb.solver.moves.CVRPBMove;
+import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
+import it.unica.ro.cvrpb.solver.moves.MoveOperator;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
-public abstract class BestMoveStrategy implements LocalSearchStrategy {
+public abstract class BestGreedyImprovement implements LocalSearchStrategy {
 
     private double threshold = 1e-6;
 
     @Override
     public void minimize(CVRPBSolution solution) {
-        CVRPBMove move = findBestMove(solution);
+        MoveOperator move = findBestMove(solution);
 
         while (move != null) {
             move.apply();
@@ -28,5 +29,5 @@ public abstract class BestMoveStrategy implements LocalSearchStrategy {
         this.threshold = threshold;
     }
 
-    public abstract CVRPBMove findBestMove(CVRPBSolution solution);
+    public abstract MoveOperator findBestMove(CVRPBSolution solution);
 }

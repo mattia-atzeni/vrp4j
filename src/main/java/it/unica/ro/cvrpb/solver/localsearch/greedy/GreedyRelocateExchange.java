@@ -1,26 +1,26 @@
-package it.unica.ro.cvrpb.solver.localsearch;
+package it.unica.ro.cvrpb.solver.localsearch.greedy;
 
 import it.unica.ro.cvrpb.solver.moves.ExchangeMove;
-import it.unica.ro.cvrpb.solver.moves.CVRPBMove;
+import it.unica.ro.cvrpb.solver.moves.MoveOperator;
 import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
-public class BestImprovementStrategy extends BestMoveStrategy {
+public class GreedyRelocateExchange extends BestGreedyImprovement {
 
-    private final BestExchangeStrategy bestExchange;
-    private final BestRelocateStrategy bestRelocate;
+    private final BestGreedyExchange bestExchange;
+    private final BestGreedyRelocate bestRelocate;
 
-    public BestImprovementStrategy() {
-        bestExchange = new BestExchangeStrategy();
-        bestRelocate = new BestRelocateStrategy();
+    public GreedyRelocateExchange() {
+        bestExchange = new BestGreedyExchange();
+        bestRelocate = new BestGreedyRelocate();
     }
 
     @Override
-    public CVRPBMove findBestMove(CVRPBSolution solution) {
+    public MoveOperator findBestMove(CVRPBSolution solution) {
         ExchangeMove exchangeMove = bestExchange.findBestMove(solution);
         RelocateMove relocateMove = bestRelocate.findBestMove(solution);
 
-        CVRPBMove bestMove = exchangeMove;
+        MoveOperator bestMove = exchangeMove;
 
         if (exchangeMove == null) {
             return relocateMove;
@@ -33,6 +33,7 @@ public class BestImprovementStrategy extends BestMoveStrategy {
         if (relocateMove.compareTo(exchangeMove) > getThreshold()) {
             bestMove = relocateMove;
         }
+
         return bestMove;
     }
 }

@@ -6,7 +6,7 @@ import it.unica.ro.cvrpb.model.Route;
 import it.unica.ro.cvrpb.solver.CostTable;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
-public class ExchangeMove implements CVRPBMove {
+public class ExchangeMove implements MoveOperator {
 
     private final Route firstRoute;
     private final int firstIndex;
@@ -51,8 +51,7 @@ public class ExchangeMove implements CVRPBMove {
                 costs.get(firstCustomer, nextSecond);
 
         if (firstRoute == secondRoute && Math.abs(secondIndex - firstIndex) == 1) {
-            localPreCondition -= costs.get(firstCustomer, nextFirst) +
-                    costs.get(prevSecond, secondCustomer);
+            localPreCondition -= (2 * costs.get(firstCustomer, secondCustomer));
         }
 
         return localPreCondition - localPostCondition;
@@ -101,7 +100,7 @@ public class ExchangeMove implements CVRPBMove {
     }
 
     @Override
-    public int compareTo(CVRPBMove o) {
+    public int compareTo(MoveOperator o) {
         return (int) Math.ceil(this.gain() - o.gain());
     }
 
