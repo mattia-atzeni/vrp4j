@@ -1,11 +1,9 @@
 package it.unica.ro.cvrpb.controller;
 
-import it.unica.ro.cvrpb.Main;
+import it.unica.ro.cvrpb.CVRPBSolverApp;
 import it.unica.ro.cvrpb.Settings;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
-import it.unica.ro.cvrpb.view.HomeView;
 import it.unica.ro.cvrpb.view.InstancePickerView;
-import it.unica.ro.cvrpb.view.View;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -26,14 +24,15 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
             System.out.println();
 
             if (fileName.trim().toLowerCase().equals("back")) {
-                exit();
+                home();
                 return;
             }
 
             if (!fileName.endsWith(".txt")) {
                 fileName = fileName + ".txt";
             }
-            CVRPBSolution solution = Main.solve(fileName);
+            System.out.println("Applying " + CVRPBSolverApp.getSolver());
+            CVRPBSolution solution = CVRPBSolverApp.solve(fileName);
             if (solution == null) {
                 throw new RuntimeException("Something went wrong");
             }
@@ -46,11 +45,5 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
             getView().show();
             handleInput();
         }
-    }
-
-    private void exit() {
-        View home = new HomeView();
-        home.show();
-        home.getController().handleInput();
     }
 }

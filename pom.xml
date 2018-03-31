@@ -24,7 +24,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>it.unica.ro.cvrpb.Main</mainClass>
+                            <mainClass>it.unica.ro.cvrpb.CVRPBSolverApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -47,7 +47,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>it.unica.ro.cvrpb.Main</mainClass>
+                            <mainClass>it.unica.ro.cvrpb.CVRPBSolverApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
