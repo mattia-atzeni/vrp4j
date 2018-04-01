@@ -47,7 +47,7 @@ public class CVRPBSolverApp {
     }
 
     public static void solveAll() throws IOException {
-        Path instancesPath = Paths.get(Settings.instancesPath);
+        Path instancesPath = Paths.get(Settings.INSTANCES_PATH);
         List<String> instances = Files.list(instancesPath)
                 .map(path -> path.toFile().getName())
                 .collect(Collectors.toList());
@@ -60,7 +60,7 @@ public class CVRPBSolverApp {
     }
 
     public static CVRPBSolution solve(String inputFileName) throws IOException {
-        String inputPath = Settings.instancesPath + inputFileName;
+        String inputPath = Settings.INSTANCES_PATH + inputFileName;
         CVRPBProblem problem = new CVRPBReader().read(inputPath);
 
         System.out.println("Solving " + inputFileName);
@@ -94,11 +94,11 @@ public class CVRPBSolverApp {
         }
 
         String outputFileName = inputFileName.replace(".txt", "") + "_solution.txt";
-        Path solutionPath = Paths.get(Settings.solutionPath);
+        Path solutionPath = Paths.get(Settings.SOLUTION_PATH);
         if (!Files.exists(solutionPath)) {
             Files.createDirectory(solutionPath);
         }
-        String outputPath = Settings.solutionPath + outputFileName;
+        String outputPath = Settings.SOLUTION_PATH + outputFileName;
         try (CVRPBWriter writer = new CVRPBWriter(new File(outputPath))) {
             writer.writeInstanceFileName(inputFileName);
             writer.println();

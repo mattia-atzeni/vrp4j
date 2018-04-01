@@ -27,7 +27,7 @@ public class InstancePickerView extends CVRPBView {
     }
 
     public void onSolutionFound(String outputFileName, CVRPBSolution solution) {
-        String path = Settings.solutionPath + outputFileName;
+        String path = Settings.SOLUTION_PATH + outputFileName;
         System.out.println();
         System.out.println("Problem solved successfully!");
         System.out.println("Check " + path + " for more details.");

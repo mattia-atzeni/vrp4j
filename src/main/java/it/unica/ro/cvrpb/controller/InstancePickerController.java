@@ -40,7 +40,7 @@ public class InstancePickerController extends CVRPBController<InstancePickerView
             getView().onSolutionFound(outputFileName, solution);
         } catch (IOException e) {
             System.out.println("Cannot read file " + fileName);
-            System.out.println("Check that instance files are placed in " + Settings.instancesPath);
+            System.out.println("Check that instance files are placed in " + Settings.INSTANCES_PATH);
             System.out.println();
             getView().show();
             handleInput();
