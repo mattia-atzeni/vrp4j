@@ -5,6 +5,9 @@ import it.unica.ro.cvrpb.controller.Controller;
 import it.unica.ro.cvrpb.controller.InstancePickerController;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
+/**
+ * The view allowing the user to choose the vehicle routing problem to be solved
+ */
 public class InstancePickerView extends CVRPBView {
 
     private final InstancePickerController controller;
@@ -13,6 +16,9 @@ public class InstancePickerView extends CVRPBView {
         this.controller = new InstancePickerController(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         System.out.println("Type the name of the instance you want to solve (A1 - N6)");
@@ -21,11 +27,19 @@ public class InstancePickerView extends CVRPBView {
         System.out.print("> ");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Controller getController() {
         return controller;
     }
 
+    /**
+     * Prints details about a newly found solution
+     * @param outputFileName the name of the file containing more details about the solution
+     * @param solution the newly found solution for the chosen Vehicle Routing Problem
+     */
     public void onSolutionFound(String outputFileName, CVRPBSolution solution) {
         String path = Settings.SOLUTION_PATH + outputFileName;
         System.out.println();

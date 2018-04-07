@@ -2,8 +2,14 @@ package it.unica.ro.cvrpb.view;
 
 import java.io.IOException;
 
+/**
+ * The base view extended by all other views in the project
+ */
 public abstract class CVRPBView implements View {
 
+    /**
+     * Prints the CVRPBSolver logo
+     */
     public void printLogo() {
         String logo =
                 "  ______     ______  ____  ____    ____        _                \n" +
@@ -16,6 +22,9 @@ public abstract class CVRPBView implements View {
         System.out.println(logo);
     }
 
+    /**
+     * Clears the screen
+     */
     public void clearScreen() {
         try {
             System.out.print("\033[H\033[2J");

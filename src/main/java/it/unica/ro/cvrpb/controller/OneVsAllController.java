@@ -1,20 +1,23 @@
 package it.unica.ro.cvrpb.controller;
 
-import it.unica.ro.cvrpb.CVRPBSolverApp;
-import it.unica.ro.cvrpb.Settings;
-import it.unica.ro.cvrpb.view.OneVsAllView;
 import it.unica.ro.cvrpb.view.InstancePickerView;
+import it.unica.ro.cvrpb.view.OneVsAllView;
 import it.unica.ro.cvrpb.view.View;
 
-import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The OneVsAllController class represents the controller which handles the input of the OnVsAllView class
+ */
 public class OneVsAllController extends CVRPBController<OneVsAllView> {
 
     public OneVsAllController(OneVsAllView view) {
         super(view);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void handleInput() {
         int choice;
@@ -35,26 +38,18 @@ public class OneVsAllController extends CVRPBController<OneVsAllView> {
         }
     }
 
+    /**
+     * Handles the request of solving all the problem instances
+     */
     private void handleSolveAll() {
-        try {
-            System.out.println("Applying " + CVRPBSolverApp.getSolver());
-            System.out.println();
-            CVRPBSolverApp.solveAll();
-            System.out.println();
-            System.out.println("All problems have been solved successfully!");
-            System.out.println("Check " + Settings.SOLUTION_PATH + " for more details.");
-        } catch (IOException e) {
-            System.out.println("Something went wrong");
-            System.out.println(e.getMessage());
-            System.out.println("Check that instance files are placed in " + Settings.INSTANCES_PATH);
-            System.out.println();
-        }
-        System.out.println();
-        System.out.println("Press return to come back to home");
+        getView().onSolveAll();
         new Scanner(System.in).nextLine();
         home();
     }
 
+    /**
+     * Handles the request of solving a specific problem instances
+     */
     private void handleSpecificInstance() {
         View view = new InstancePickerView();
         view.show();
