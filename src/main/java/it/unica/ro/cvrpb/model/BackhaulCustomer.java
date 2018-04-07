@@ -23,11 +23,17 @@ public class BackhaulCustomer extends Customer {
         return getLoad();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isLinehaul() {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isBackhaul() {
         return true;

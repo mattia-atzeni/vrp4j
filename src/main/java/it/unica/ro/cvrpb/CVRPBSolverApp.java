@@ -2,6 +2,7 @@ package it.unica.ro.cvrpb;
 
 import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.readers.CVRPBReader;
+import it.unica.ro.cvrpb.solver.CVRPBLocalSearchSolver;
 import it.unica.ro.cvrpb.solver.CVRPBMultiStartSolver;
 import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
@@ -70,14 +71,15 @@ public class CVRPBSolverApp {
         long totalTime;
         CVRPBSolution solution;
 
-        if (!(solver instanceof CVRPBMultiStartSolver)) {
+        if (solver instanceof CVRPBLocalSearchSolver) {
+            CVRPBLocalSearchSolver localSearchSolver = (CVRPBLocalSearchSolver) solver;
             long tic = System.currentTimeMillis();
-            solution = solver.buildInitialSolution(problem);
+            solution = localSearchSolver.buildInitialSolution(problem);
             long toc = System.currentTimeMillis();
             constructionTime = toc - tic;
 
             tic = System.currentTimeMillis();
-            solver.localSearch(solution);
+            localSearchSolver.localSearch(solution);
             toc = System.currentTimeMillis();
             localSearchTime = toc - tic;
             totalTime = localSearchTime + constructionTime;
