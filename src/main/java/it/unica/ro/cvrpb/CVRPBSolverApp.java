@@ -10,6 +10,7 @@ import it.unica.ro.cvrpb.solver.localsearch.multistage.BestRelocateExchange;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionChecker;
 import it.unica.ro.cvrpb.view.StrategyChoiceView;
+import it.unica.ro.cvrpb.writers.CSVStatsWriter;
 import it.unica.ro.cvrpb.writers.CVRPBWriter;
 
 import java.io.File;
@@ -19,6 +20,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
@@ -73,6 +76,7 @@ public class CVRPBSolverApp {
                 .map(path -> path.toFile().getName())
                 .collect(Collectors.toList());
         Collections.sort(instances);
+        new CSVStatsWriter(Settings.CSV_STATS_PATH).clear();
         for (String instance : instances) {
             if (!instance.equals("info.txt")) {
                 solve(instance);
@@ -84,7 +88,7 @@ public class CVRPBSolverApp {
      * Solves a vehicle routing problem, given the instance name associated to the problem.
      * The solution is stored in a file, along with the time required to solve the problem.
      *
-     * @throws IOException in case it is not possible to read a file spefiying an instance to be solved
+     * @throws IOException in case it is not possible to read a file specifying an instance to be solved
      */
     public static CVRPBSolution solve(String inputFileName) throws IOException {
         String inputPath = Settings.INSTANCES_PATH + inputFileName;
@@ -116,6 +120,15 @@ public class CVRPBSolverApp {
             totalTime = toc - tic;
         }
 
+        double lowerBound;
+        double gap = 0;
+        try {
+            lowerBound = getLowerBound(inputFileName);
+            gap = (solution.getTotalCost() - lowerBound) / lowerBound;
+        } catch (Exception e) {
+            lowerBound = -1;
+        }
+
         CVRPBSolutionChecker checker = new CVRPBSolutionChecker(problem);
         if (!checker.check(solution)) {
             throw new RuntimeException("Illegal solution");
@@ -127,12 +140,25 @@ public class CVRPBSolverApp {
             Files.createDirectory(solutionPath);
         }
         String outputPath = Settings.SOLUTION_PATH + outputFileName;
+
         try (CVRPBWriter writer = new CVRPBWriter(new File(outputPath))) {
             writer.writeInstanceFileName(inputFileName);
             writer.println();
 
             writer.writeProblemDetails(problem);
             writer.println();
+
+            writer.writeSolver(solver);
+            writer.println();
+
+            writer.writeTotalCost(solution.getTotalCost());
+            writer.println();
+
+            if (lowerBound != -1) {
+                writer.writeLowerBound(lowerBound);
+                writer.writeGap(gap);
+                writer.println();
+            }
 
             if (constructionTime != -1 && localSearchTime != -1) {
                 writer.writeConstructionTime(constructionTime);
@@ -144,7 +170,33 @@ public class CVRPBSolverApp {
             writer.writeSolutionDetails(solution);
         }
 
+        if (lowerBound != -1) {
+           try (CSVStatsWriter writer = new CSVStatsWriter(Settings.CSV_STATS_PATH)) {
+                writer.appendLine(inputFileName, problem.getCustomersCount(), totalTime / 1000.0, solution.getTotalCost(), lowerBound, gap);
+            }
+        }
+
         return solution;
+    }
+
+    private static double getLowerBound(String inputFileName) throws IOException {
+        String lowerBoundPath = Settings.LOWER_BOUND_PATH + "Detailed_Solution_" + inputFileName;
+        String start = "Total Cost = ";
+
+        String line = Files.lines(Paths.get(lowerBoundPath))
+                .filter(l -> l.startsWith(start))
+                .findFirst()
+                .orElseThrow(RuntimeException::new);
+
+
+        Pattern pattern = Pattern.compile(start + "(.*)");
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.matches()) {
+            String lowerBound = matcher.group(1);
+            return Double.parseDouble(lowerBound);
+        }
+
+        throw new RuntimeException("Cannot read Lower Bound");
     }
 
     public static LocalSearchStrategy getLocalSearchStrategy() {

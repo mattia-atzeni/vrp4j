@@ -2,6 +2,7 @@ package it.unica.ro.cvrpb.writers;
 
 import it.unica.ro.cvrpb.model.CVRPBProblem;
 import it.unica.ro.cvrpb.model.Route;
+import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
 import java.io.File;
@@ -57,8 +58,8 @@ public class CVRPBWriter implements AutoCloseable {
      * @param solution a solution to a vehicle routing problem
      */
     public void writeSolutionDetails(CVRPBSolution solution) {
-        writer.println("SOLUTION DETAILS");
-        writer.printf("Total cost: %.3f\n", solution.getTotalCost());
+        writer.println("SOLUTION");
+        //writer.printf("Total cost: %.3f\n", solution.getTotalCost());
         writer.println("Routes: " + solution.getRoutes().size());
         println();
         int size = solution.size();
@@ -103,7 +104,7 @@ public class CVRPBWriter implements AutoCloseable {
 
     /**
      * Writes the total time required to solve the problem
-     * @param timeInMillis the time in miiliseconds required to solve the problem
+     * @param timeInMillis the time in milliseconds required to solve the problem
      */
     public void writeTotalTime(long timeInMillis) {
         double timeInSeconds = timeInMillis / 1000.0;
@@ -113,5 +114,21 @@ public class CVRPBWriter implements AutoCloseable {
     @Override
     public void close() {
         writer.close();
+    }
+
+    public void writeSolver(CVRPBSolver solver) {
+        writer.println(solver);
+    }
+
+    public void writeLowerBound(double lowerBound) {
+        writer.println("Lower Bound: " + lowerBound);
+    }
+
+    public void writeGap(double gap) {
+        writer.printf("GAP: %.3f", gap);
+    }
+
+    public void writeTotalCost(double totalCost) {
+        writer.printf("Total cost: %.3f\n", totalCost);
     }
 }
