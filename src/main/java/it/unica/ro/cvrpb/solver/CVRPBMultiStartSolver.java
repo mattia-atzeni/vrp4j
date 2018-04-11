@@ -11,7 +11,7 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
  */
 public class CVRPBMultiStartSolver implements CVRPBSolver {
 
-    private int iterations = 1500;
+    private int iterations = 500;
     private CVRPBLocalSearchSolver solver;
 
     /**
