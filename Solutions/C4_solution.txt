@@ -1,0 +1,53 @@
+Solution of problem: C4.txt
+
+PROBLEM DETAILS
+Customers: 40
+Linehaul Customers: 20
+Backhaul Customers: 20
+Capacity: 4150
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 243364.438
+
+Lower Bound: 195366.0
+GAP: 0.246
+Construction phase time: 0.001 seconds
+Local search time: 0.004 seconds
+Total time: 0.005 seconds
+
+SOLUTION
+Routes: 4
+
+ROUTE 0
+Cost: 37971.624
+Delivery Load: 2053
+Pick-Up Load: 1819
+Customers in Route: 8
+Vertex Sequence:
+0 21 34 25 30 13 18 12 15 0
+
+ROUTE 1
+Cost: 73784.748
+Delivery Load: 4050
+Pick-Up Load: 3676
+Customers in Route: 15
+Vertex Sequence:
+0 26 28 38 33 39 22 23 2 9 20 7 10 8 3 4 0
+
+ROUTE 2
+Cost: 23308.001
+Delivery Load: 347
+Pick-Up Load: 1035
+Customers in Route: 3
+Vertex Sequence:
+0 29 14 11 0
+
+ROUTE 3
+Cost: 108300.064
+Delivery Load: 3543
+Pick-Up Load: 3776
+Customers in Route: 14
+Vertex Sequence:
+0 27 37 31 40 35 32 24 36 19 17 5 16 1 6 0
+

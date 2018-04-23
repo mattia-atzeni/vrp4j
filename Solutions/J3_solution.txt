@@ -1,0 +1,69 @@
+Solution of problem: J3.txt
+
+PROBLEM DETAILS
+Customers: 94
+Linehaul Customers: 75
+Backhaul Customers: 19
+Capacity: 8200
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 381922.068
+
+Lower Bound: 279219.0
+GAP: 0.368
+Construction phase time: 0.0 seconds
+Local search time: 0.009 seconds
+Total time: 0.009 seconds
+
+SOLUTION
+Routes: 6
+
+ROUTE 0
+Cost: 766.616
+Delivery Load: 500
+Pick-Up Load: 0
+Customers in Route: 1
+Vertex Sequence:
+0 56 0
+
+ROUTE 1
+Cost: 66890.638
+Delivery Load: 8051
+Pick-Up Load: 0
+Customers in Route: 15
+Vertex Sequence:
+0 51 33 82 89 66 93 53 79 35 44 36 75 57 55 80 0
+
+ROUTE 2
+Cost: 51749.500
+Delivery Load: 8091
+Pick-Up Load: 715
+Customers in Route: 15
+Vertex Sequence:
+0 50 23 78 28 77 70 63 84 90 87 71 92 83 47 15 0
+
+ROUTE 3
+Cost: 59385.238
+Delivery Load: 7887
+Pick-Up Load: 623
+Customers in Route: 15
+Vertex Sequence:
+0 73 58 48 39 69 60 45 43 20 74 26 21 91 94 14 0
+
+ROUTE 4
+Cost: 61699.217
+Delivery Load: 8078
+Pick-Up Load: 2794
+Customers in Route: 20
+Vertex Sequence:
+0 31 29 76 42 34 72 64 38 61 25 41 52 65 30 46 6 3 5 12 16 0
+
+ROUTE 5
+Cost: 141430.858
+Delivery Load: 8182
+Pick-Up Load: 5394
+Customers in Route: 28
+Vertex Sequence:
+0 49 59 37 22 54 86 40 81 24 88 32 27 68 85 62 67 4 13 18 8 10 11 7 9 17 1 19 2 0
+

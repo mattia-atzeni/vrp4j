@@ -1,0 +1,59 @@
+Text File with Solution Of Problem: J3.txt
+
+PROBLEM DETAILS:
+Customers = 94
+Max Load = 8200
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 279219.0
+Routes Of the Solution = 6
+
+ROUTE 0:
+Cost = 532936.0000
+Delivery Load = 7788
+Pick-Up  Load = 988
+Customers in Route = 17
+Vertex Sequence :
+0 26 50 21 91 75 57 55 22 54 86 37 59 81 40 2 19 16 0 
+
+ROUTE 1:
+Cost = 617192.0000
+Delivery Load = 7756
+Pick-Up  Load = 2400
+Customers in Route = 20
+Vertex Sequence :
+0 73 88 58 51 85 27 68 33 82 89 66 62 44 36 35 67 4 13 18 8 0 
+
+ROUTE 2:
+Cost = 464608.0000
+Delivery Load = 5347
+Pick-Up  Load = 1643
+Customers in Route = 15
+Vertex Sequence :
+0 31 29 20 43 76 45 60 69 39 32 48 10 11 7 9 0 
+
+ROUTE 3:
+Cost = 188480.0000
+Delivery Load = 4081
+Pick-Up  Load = 623
+Customers in Route = 7
+Vertex Sequence :
+0 56 74 53 93 79 94 14 0 
+
+ROUTE 4:
+Cost = 502885.0000
+Delivery Load = 7969
+Pick-Up  Load = 2434
+Customers in Route = 19
+Vertex Sequence :
+0 24 80 49 23 78 28 77 70 63 84 90 87 30 46 6 3 5 12 1 0 
+
+ROUTE 5:
+Cost = 486088.0000
+Delivery Load = 7848
+Pick-Up  Load = 1438
+Customers in Route = 16
+Vertex Sequence :
+0 52 65 71 92 83 47 61 38 64 72 34 42 25 41 15 17 0 
+

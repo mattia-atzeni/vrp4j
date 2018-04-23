@@ -1,0 +1,51 @@
+Text File with Solution Of Problem: H2.txt
+
+PROBLEM DETAILS:
+Customers = 68
+Max Load = 5100
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 253365.0
+Routes Of the Solution = 5
+
+ROUTE 0:
+Cost = 724757.0000
+Delivery Load = 4816
+Pick-Up  Load = 2213
+Customers in Route = 16
+Vertex Sequence :
+0 33 31 55 48 40 37 59 47 65 53 68 2 20 6 4 13 0 
+
+ROUTE 1:
+Cost = 523803.0000
+Delivery Load = 4473
+Pick-Up  Load = 2582
+Customers in Route = 15
+Vertex Sequence :
+0 44 39 62 58 26 46 38 52 36 8 9 7 14 18 15 0 
+
+ROUTE 2:
+Cost = 601134.0000
+Delivery Load = 4816
+Pick-Up  Load = 3295
+Customers in Route = 17
+Vertex Sequence :
+0 60 63 42 66 45 30 54 41 32 29 43 11 17 23 21 5 10 0 
+
+ROUTE 3:
+Cost = 557993.0000
+Delivery Load = 4898
+Pick-Up  Load = 3391
+Customers in Route = 16
+Vertex Sequence :
+0 64 35 57 24 27 67 25 56 50 34 3 22 16 1 12 19 0 
+
+ROUTE 4:
+Cost = 125967.0000
+Delivery Load = 2198
+Pick-Up  Load = 0
+Customers in Route = 4
+Vertex Sequence :
+0 51 49 28 61 0 
+

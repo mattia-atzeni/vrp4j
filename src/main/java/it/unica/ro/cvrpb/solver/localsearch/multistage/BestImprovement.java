@@ -10,7 +10,6 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 /**
  * The BestImprovement class represents a best improvement local search strategy.
  * This strategy evaluates all possible moves and applies the one yielding the best improvement of the objective value.
- * @param <T>
  */
 public abstract class BestImprovement<T extends MoveOperator> implements LocalSearchStrategy {
 
