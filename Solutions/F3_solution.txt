@@ -8,19 +8,19 @@ Capacity: 4400
 
 Local Search with Combination of Best Exchange and Best Relocate strategy
 
-Total cost: 313421.797
+Total cost: 313421,797
 
 Lower Bound: 241120.0
-GAP: 0.300
+GAP: 0,300
 Construction phase time: 0.0 seconds
-Local search time: 0.002 seconds
-Total time: 0.002 seconds
+Local search time: 0.003 seconds
+Total time: 0.003 seconds
 
 SOLUTION
 Routes: 5
 
 ROUTE 0
-Cost: 52567.561
+Cost: 52567,561
 Delivery Load: 1561
 Pick-Up Load: 2586
 Customers in Route: 9
@@ -28,7 +28,7 @@ Vertex Sequence:
 0 31 33 35 39 19 15 25 2 29 0
 
 ROUTE 1
-Cost: 66314.816
+Cost: 66314,816
 Delivery Load: 3589
 Pick-Up Load: 4337
 Customers in Route: 15
@@ -36,7 +36,7 @@ Vertex Sequence:
 0 47 55 42 41 57 34 40 10 17 16 13 14 8 27 7 0
 
 ROUTE 2
-Cost: 44560.997
+Cost: 44560,997
 Delivery Load: 3098
 Pick-Up Load: 1838
 Customers in Route: 9
@@ -44,7 +44,7 @@ Vertex Sequence:
 0 37 38 45 53 51 48 24 20 1 0
 
 ROUTE 3
-Cost: 89408.086
+Cost: 89408,086
 Delivery Load: 4385
 Pick-Up Load: 3350
 Customers in Route: 15
@@ -52,7 +52,7 @@ Vertex Sequence:
 0 46 60 49 50 32 59 56 36 52 12 4 30 21 18 3 0
 
 ROUTE 4
-Cost: 60570.336
+Cost: 60570,336
 Delivery Load: 2777
 Pick-Up Load: 4299
 Customers in Route: 12
