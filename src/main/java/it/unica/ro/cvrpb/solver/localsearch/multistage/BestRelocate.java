@@ -4,8 +4,19 @@ import it.unica.ro.cvrpb.solver.moves.RelocateMove;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 import it.unica.ro.cvrpb.solver.solution.CVRPBSolutionNodeIterator;
 
+/**
+ * The BestRelocate class represents a best relocate local search strategy.
+ * The strategy finds and applies for all nodes the relocate move yielding the best
+ * improvement of the objective value.
+ */
 public class BestRelocate extends BestImprovement<RelocateMove> {
 
+    /**
+     * Finds the best relocate move for the given node in the specified solution
+     * @param solution the given solution
+     * @param node the node to be relocated
+     * @return the best relocate move for the give node
+     */
     @Override
     public RelocateMove findBestMove(CVRPBSolution solution, CVRPBSolutionNodeIterator node) {
         validateNotNull(solution, node);
