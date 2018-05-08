@@ -3,6 +3,9 @@ package it.unica.ro.cvrpb.view;
 import it.unica.ro.cvrpb.controller.AlgorithmChoiceController;
 import it.unica.ro.cvrpb.controller.Controller;
 
+/**
+ * The view allowing the user to choose the solver to be used
+ */
 public class AlgorithmChoiceView extends CVRPBView {
 
     private final AlgorithmChoiceController controller;
@@ -11,6 +14,9 @@ public class AlgorithmChoiceView extends CVRPBView {
         this.controller = new AlgorithmChoiceController(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         printMenu();
@@ -26,6 +32,9 @@ public class AlgorithmChoiceView extends CVRPBView {
         System.out.print("> ");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Controller getController() {
         return controller;

@@ -21,11 +21,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * The main class of the project
+ */
 public class CVRPBSolverApp {
 
     private static LocalSearchStrategy strategy = new BestRelocateExchange();
     private static CVRPBSolver solver = new CVRPBMultiStartSolver(strategy);
 
+    /**
+     * Executes the program
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         try {
             StrategyChoiceView home = new StrategyChoiceView();
@@ -39,14 +46,27 @@ public class CVRPBSolverApp {
         }
     }
 
+    /**
+     * Sets the local search strategy
+     * @param strategy the local search strategy
+     */
     public static void setStrategy(LocalSearchStrategy strategy) {
         CVRPBSolverApp.strategy = strategy;
     }
 
+    /**
+     * Sets the solver
+     * @param solver the solver to be applied to the vehicle routing problems
+     */
     public static void setSolver(CVRPBSolver solver) {
         CVRPBSolverApp.solver = solver;
     }
 
+    /**
+     * Solves all the problems vehicle routing problems
+     * @throws IOException in case it is not possible to read
+     * the file corresponding to an instance to be solved
+     */
     public static void solveAll() throws IOException {
         Path instancesPath = Paths.get(Settings.INSTANCES_PATH);
         List<String> instances = Files.list(instancesPath)
@@ -60,6 +80,12 @@ public class CVRPBSolverApp {
         }
     }
 
+    /**
+     * Solves a vehicle routing problem, given the instance name associated to the problem.
+     * The solution is stored in a file, along with the time required to solve the problem.
+     *
+     * @throws IOException in case it is not possible to read a file spefiying an instance to be solved
+     */
     public static CVRPBSolution solve(String inputFileName) throws IOException {
         String inputPath = Settings.INSTANCES_PATH + inputFileName;
         CVRPBProblem problem = new CVRPBReader().read(inputPath);

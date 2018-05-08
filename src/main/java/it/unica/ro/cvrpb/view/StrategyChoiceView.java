@@ -3,6 +3,9 @@ package it.unica.ro.cvrpb.view;
 import it.unica.ro.cvrpb.controller.Controller;
 import it.unica.ro.cvrpb.controller.StrategyChoiceController;
 
+/**
+ * The View allowing the user to choose the local search strategy
+ */
 public class StrategyChoiceView extends CVRPBView {
 
     private final StrategyChoiceController controller;
@@ -11,6 +14,9 @@ public class StrategyChoiceView extends CVRPBView {
         this.controller = new StrategyChoiceController(this);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void show() {
         clearScreen();
@@ -30,6 +36,15 @@ public class StrategyChoiceView extends CVRPBView {
         System.out.print("> ");;
     }
 
+    public void onExit() {
+        System.out.println();
+        System.out.println("Bye");
+        System.out.println();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Controller getController() {
         return controller;

@@ -8,13 +8,18 @@ import it.unica.ro.cvrpb.view.InstancePickerView;
 import java.io.IOException;
 import java.util.Scanner;
 
-
+/**
+ * The InstancePickerController class represents the controller associated with the InstancePickerView
+ */
 public class InstancePickerController extends CVRPBController<InstancePickerView> {
 
     public InstancePickerController(InstancePickerView view) {
         super(view);
     }
 
+    /**
+     * {inheritDoc}
+     */
     @Override
     public void handleInput() {
         String fileName = "";

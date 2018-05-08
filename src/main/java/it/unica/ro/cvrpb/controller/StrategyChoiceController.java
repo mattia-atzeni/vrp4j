@@ -16,6 +16,9 @@ public class StrategyChoiceController extends CVRPBController<StrategyChoiceView
         super(view);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void handleInput() {
         Scanner scanner = new Scanner(System.in);
@@ -39,28 +42,42 @@ public class StrategyChoiceController extends CVRPBController<StrategyChoiceView
         nextView();
     }
 
+    /**
+     * handles the request of exiting
+     */
     private void handleExit() {
-        System.out.println();
-        System.out.println("Bye");
-        System.out.println();
+        getView().onExit();
     }
 
+    /**
+     * Sets the best exchange strategy
+     */
     private void handleBestExchangeChoice() {
         BestExchange bestExchange = new BestExchange();
         CVRPBSolverApp.setStrategy(bestExchange);
     }
 
+
+    /**
+     * Sets the best relocate strategy
+     */
     private void handleBestRelocateChoice() {
         BestRelocate bestRelocate = new BestRelocate();
         CVRPBSolverApp.setStrategy(bestRelocate);
     }
 
 
+    /**
+     * Sets a combination of relocate and exchange as strategy
+     */
     private void handleRelocateExchangeChoice() {
         BestRelocateExchange strategy = new BestRelocateExchange();
         CVRPBSolverApp.setStrategy(strategy);
     }
 
+    /**
+     * Goes to the next view
+     */
     private void nextView() {
         View next = new AlgorithmChoiceView();
         next.show();

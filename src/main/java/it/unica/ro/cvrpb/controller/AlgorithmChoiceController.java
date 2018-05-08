@@ -1,8 +1,9 @@
 package it.unica.ro.cvrpb.controller;
 
 import it.unica.ro.cvrpb.CVRPBSolverApp;
-import it.unica.ro.cvrpb.solver.CVRPBMultiStartSolver;
 import it.unica.ro.cvrpb.solver.CVRPBLocalSearchSolver;
+import it.unica.ro.cvrpb.solver.CVRPBMultiStartSolver;
+import it.unica.ro.cvrpb.solver.CVRPBSolver;
 import it.unica.ro.cvrpb.solver.construction.BaseConstructionStrategy;
 import it.unica.ro.cvrpb.solver.construction.ConstructionStrategy;
 import it.unica.ro.cvrpb.solver.localsearch.LocalSearchStrategy;
@@ -48,7 +49,7 @@ public class AlgorithmChoiceController extends CVRPBController<AlgorithmChoiceVi
 
     private void handleMultiStartChoice() {
         LocalSearchStrategy strategy = CVRPBSolverApp.getLocalSearchStrategy();
-        CVRPBLocalSearchSolver solver = new CVRPBMultiStartSolver(strategy);
+        CVRPBSolver solver = new CVRPBMultiStartSolver(strategy);
         CVRPBSolverApp.setSolver(solver);
     }
 
