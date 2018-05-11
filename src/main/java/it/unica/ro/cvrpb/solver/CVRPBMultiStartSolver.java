@@ -7,11 +7,11 @@ import it.unica.ro.cvrpb.solver.solution.CVRPBSolution;
 
 /**
  * Implements the multi-start metaheuristics through an iterated local search applied to
- * several inital configurations
+ * several initial configurations
  */
 public class CVRPBMultiStartSolver implements CVRPBSolver {
 
-    private int iterations = 1000;
+    private int iterations = 1500;
     private CVRPBLocalSearchSolver solver;
 
     /**
