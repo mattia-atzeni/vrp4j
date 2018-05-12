@@ -31,6 +31,7 @@ public class CVRPBSolverApp {
 
     private static LocalSearchStrategy strategy = new BestRelocateExchange();
     private static CVRPBSolver solver = new CVRPBMultiStartSolver(strategy);
+    private static CSVStatsWriter csvWriter;
 
     /**
      * Executes the program
@@ -46,6 +47,9 @@ public class CVRPBSolverApp {
             if (t.getMessage() != null) {
                 System.out.println(t.getMessage());
             }
+        }
+        if (csvWriter != null) {
+            csvWriter.close();
         }
     }
 
@@ -76,7 +80,7 @@ public class CVRPBSolverApp {
                 .map(path -> path.toFile().getName())
                 .collect(Collectors.toList());
         Collections.sort(instances);
-        new CSVStatsWriter(Settings.CSV_STATS_PATH).clear();
+        getCsvWriter().clear();
         for (String instance : instances) {
             if (!instance.equals("info.txt")) {
                 solve(instance);
@@ -171,9 +175,9 @@ public class CVRPBSolverApp {
         }
 
         if (lowerBound != -1) {
-           try (CSVStatsWriter writer = new CSVStatsWriter(Settings.CSV_STATS_PATH)) {
-                writer.appendLine(inputFileName, problem.getCustomersCount(), totalTime / 1000.0, solution.getTotalCost(), lowerBound, gap);
-            }
+            getCsvWriter().appendLine(
+                    inputFileName, problem.getCustomersCount(), totalTime / 1000.0, solution.getTotalCost(), lowerBound, gap
+            );
         }
 
         return solution;
@@ -205,5 +209,20 @@ public class CVRPBSolverApp {
 
     public static CVRPBSolver getSolver() {
         return solver;
+    }
+
+    private static CSVStatsWriter getCsvWriter() {
+        if (csvWriter != null) {
+            return csvWriter;
+        }
+        try {
+            csvWriter = new CSVStatsWriter(Settings.CSV_STATS_PATH);
+        } catch (IOException e) {
+            if (csvWriter != null) {
+                csvWriter.close();
+            }
+            throw new RuntimeException(e);
+        }
+        return csvWriter;
     }
 }

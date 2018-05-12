@@ -28,6 +28,7 @@ public abstract class CVRPBController<T extends CVRPBView> implements Controller
      * @param b the upper bound
      */
     protected void handleInvalidInputRange(int a, int b) {
+        System.out.println();
         System.out.println("You should enter a value between " + a + " and " + b);
         System.out.println();
         System.out.print("> ");
