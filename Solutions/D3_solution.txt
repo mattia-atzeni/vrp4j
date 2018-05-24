@@ -1,0 +1,77 @@
+Solution of problem: D3.txt
+
+PROBLEM DETAILS
+Customers: 38
+Linehaul Customers: 30
+Backhaul Customers: 8
+Capacity: 2750
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 271792.098
+
+Lower Bound: 239479.0
+GAP: 0.135
+Construction phase time: 0.0 seconds
+Local search time: 0.002 seconds
+Total time: 0.002 seconds
+
+SOLUTION
+Routes: 7
+
+ROUTE 0
+Cost: 34706.449
+Delivery Load: 2404
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence:
+0 21 37 12 22 36 0
+
+ROUTE 1
+Cost: 52798.280
+Delivery Load: 2695
+Pick-Up Load: 670
+Customers in Route: 7
+Vertex Sequence:
+0 9 11 30 14 17 1 3 0
+
+ROUTE 2
+Cost: 46057.004
+Delivery Load: 2732
+Pick-Up Load: 1160
+Customers in Route: 6
+Vertex Sequence:
+0 24 13 23 31 5 4 0
+
+ROUTE 3
+Cost: 33745.194
+Delivery Load: 1689
+Pick-Up Load: 527
+Customers in Route: 4
+Vertex Sequence:
+0 19 35 38 2 0
+
+ROUTE 4
+Cost: 51358.805
+Delivery Load: 2465
+Pick-Up Load: 1489
+Customers in Route: 7
+Vertex Sequence:
+0 15 27 20 26 32 6 8 0
+
+ROUTE 5
+Cost: 27893.776
+Delivery Load: 1892
+Pick-Up Load: 362
+Customers in Route: 4
+Vertex Sequence:
+0 29 34 18 7 0
+
+ROUTE 6
+Cost: 25232.589
+Delivery Load: 2420
+Pick-Up Load: 0
+Customers in Route: 5
+Vertex Sequence:
+0 16 28 10 25 33 0
+

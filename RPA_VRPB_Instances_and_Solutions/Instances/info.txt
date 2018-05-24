@@ -1,0 +1,17 @@
+number of customers
+1
+number of vehicles
+x, y depot coordinates 0 Capacity
+--customers
+x y delivery pick-up
+
+
+Note that for the F group, the reported solutions consider that 
+the linehaul customer at (x, y) = (5103, 11065) demands 101 units,
+and the L1 capacity is equal to 4400.
+
+
+In the alternate instance version folder, we provide the F-group 
+solutions considering that the linehaul customer at (x, y) = (5103, 11065) 
+demands 1013 units, and the L1 capacity is equal to 4000.
+

@@ -1,0 +1,61 @@
+Solution of problem: G3.txt
+
+PROBLEM DETAILS
+Customers: 57
+Linehaul Customers: 45
+Backhaul Customers: 12
+Capacity: 5300
+
+Local Search with Combination of Best Exchange and Best Relocate strategy
+
+Total cost: 289863.233
+
+Lower Bound: 229507.0
+GAP: 0.263
+Construction phase time: 0.0 seconds
+Local search time: 0.002 seconds
+Total time: 0.002 seconds
+
+SOLUTION
+Routes: 5
+
+ROUTE 0
+Cost: 83623.136
+Delivery Load: 4662
+Pick-Up Load: 1553
+Customers in Route: 13
+Vertex Sequence:
+0 24 45 21 55 31 16 46 23 39 42 2 11 8 0
+
+ROUTE 1
+Cost: 55460.967
+Delivery Load: 5073
+Pick-Up Load: 0
+Customers in Route: 10
+Vertex Sequence:
+0 43 53 13 15 47 49 34 56 26 40 0
+
+ROUTE 2
+Cost: 54421.840
+Delivery Load: 5130
+Pick-Up Load: 1364
+Customers in Route: 11
+Vertex Sequence:
+0 35 27 28 17 33 38 48 22 1 12 3 0
+
+ROUTE 3
+Cost: 32949.299
+Delivery Load: 4318
+Pick-Up Load: 0
+Customers in Route: 8
+Vertex Sequence:
+0 57 20 44 50 32 14 29 37 0
+
+ROUTE 4
+Cost: 63407.991
+Delivery Load: 4650
+Pick-Up Load: 2686
+Customers in Route: 15
+Vertex Sequence:
+0 19 54 25 18 52 41 51 30 36 6 5 10 4 7 9 0
+

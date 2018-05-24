@@ -1,0 +1,51 @@
+Text File with Solution Of Problem: D4.txt
+
+PROBLEM DETAILS:
+Customers = 38
+Max Load = 4075
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 205832.0
+Routes Of the Solution = 5
+
+ROUTE 0:
+Cost = 329617.0000
+Delivery Load = 3528
+Pick-Up  Load = 0
+Customers in Route = 7
+Vertex Sequence :
+0 33 25 19 35 38 10 28 0 
+
+ROUTE 1:
+Cost = 531547.0000
+Delivery Load = 3824
+Pick-Up  Load = 1848
+Customers in Route = 9
+Vertex Sequence :
+0 22 36 31 23 13 24 8 5 4 0 
+
+ROUTE 2:
+Cost = 557776.0000
+Delivery Load = 3277
+Pick-Up  Load = 1471
+Customers in Route = 10
+Vertex Sequence :
+0 15 12 27 17 20 26 32 6 3 1 0 
+
+ROUTE 3:
+Cost = 360441.0000
+Delivery Load = 3776
+Pick-Up  Load = 527
+Customers in Route = 8
+Vertex Sequence :
+0 37 21 14 30 11 9 16 2 0 
+
+ROUTE 4:
+Cost = 278938.0000
+Delivery Load = 1892
+Pick-Up  Load = 362
+Customers in Route = 4
+Vertex Sequence :
+0 29 34 18 7 0 
+

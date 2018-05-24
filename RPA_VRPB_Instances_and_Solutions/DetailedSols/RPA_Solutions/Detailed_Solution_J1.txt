@@ -1,0 +1,91 @@
+Text File with Solution Of Problem: J1.txt
+
+PROBLEM DETAILS:
+Customers = 94
+Max Load = 4400
+Max Cost = 99999999999999
+
+SOLUTION DETAILS: 
+Total Cost = 335006.0
+Routes Of the Solution = 10
+
+ROUTE 0:
+Cost = 442630.0000
+Delivery Load = 4129
+Pick-Up  Load = 1300
+Customers in Route = 11
+Vertex Sequence :
+0 58 51 85 27 68 33 82 66 89 18 8 0 
+
+ROUTE 1:
+Cost = 393201.0000
+Delivery Load = 4128
+Pick-Up  Load = 623
+Customers in Route = 9
+Vertex Sequence :
+0 49 59 37 86 54 22 57 55 14 0 
+
+ROUTE 2:
+Cost = 310638.0000
+Delivery Load = 4307
+Pick-Up  Load = 988
+Customers in Route = 10
+Vertex Sequence :
+0 24 80 23 70 63 81 40 2 19 16 0 
+
+ROUTE 3:
+Cost = 328345.0000
+Delivery Load = 4290
+Pick-Up  Load = 723
+Customers in Route = 9
+Vertex Sequence :
+0 29 42 34 72 64 38 61 25 17 0 
+
+ROUTE 4:
+Cost = 331008.0000
+Delivery Load = 4275
+Pick-Up  Load = 715
+Customers in Route = 9
+Vertex Sequence :
+0 52 28 65 71 92 83 47 41 15 0 
+
+ROUTE 5:
+Cost = 261525.0000
+Delivery Load = 3860
+Pick-Up  Load = 0
+Customers in Route = 7
+Vertex Sequence :
+0 74 94 91 75 21 50 26 0 
+
+ROUTE 6:
+Cost = 330887.0000
+Delivery Load = 4175
+Pick-Up  Load = 1100
+Customers in Route = 10
+Vertex Sequence :
+0 93 53 79 35 36 44 62 67 4 13 0 
+
+ROUTE 7:
+Cost = 391993.0000
+Delivery Load = 4381
+Pick-Up  Load = 2434
+Customers in Route = 12
+Vertex Sequence :
+0 78 77 84 90 87 30 46 6 3 5 12 1 0 
+
+ROUTE 8:
+Cost = 456853.0000
+Delivery Load = 4365
+Pick-Up  Load = 1643
+Customers in Route = 13
+Vertex Sequence :
+0 20 43 76 45 60 69 39 32 48 10 11 7 9 0 
+
+ROUTE 9:
+Cost = 102985.0000
+Delivery Load = 2879
+Pick-Up  Load = 0
+Customers in Route = 4
+Vertex Sequence :
+0 31 88 73 56 0 
+
