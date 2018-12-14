@@ -103,7 +103,7 @@ System.out.println("Cost: " + cost);
 
 #### Local Search + Best Relocate + Best Exchange
 
-Instance|Number of Customers|Time|Total Cost|Lower Bound|GAP
+Instance|Number of Customers|Time (s)|Total Cost|Lower Bound|GAP
 -|-|-|-|-|-
 A1.txt|25|0.02|233641|229886|0.016
 B1.txt|30|0.003|265692|239080|0.111
